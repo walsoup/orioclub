@@ -1,223 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Club de l'orientation — Lycée Moulay Youssef</title>
-    <meta
-      name="description"
-      content="Mission, membres et contact du Club de l'orientation et opportunités scholaires du Lycée Moulay Youssef."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Inter:wght@400;600;700&family=Work+Sans:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" href="assets/Icon.png" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="ambient" aria-hidden="true">
-      <span class="ambient__gradient ambient__gradient--one"></span>
-      <span class="ambient__gradient ambient__gradient--two"></span>
-      <span class="ambient__gradient ambient__gradient--three"></span>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orioclub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/Icon.png" type="image/png">
+</head>
+<body>
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
     </div>
+
     <div class="page">
-      <header class="site-header" id="accueil">
-        <div class="container site-header__inner">
-          <a class="site-header__brand" href="#mission">
-            <img
-              src="assets/Icon.png"
-              class="site-header__icon"
-              alt=""
-              aria-hidden="true"
-            />
-            <span class="site-header__text">
-              <span class="site-header__eyebrow">Lycée Moulay Youssef</span>
-              <span class="site-header__title">Club de l'orientation</span>
-            </span>
-          </a>
-          <nav class="site-header__nav" aria-label="Sections principales">
-            <a href="#mission">Mission</a>
-            <a href="#membres">Membres</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </header>
+        <header class="site-header">
+            <div class="container site-header__inner">
+                <a href="#" class="site-header__brand">
+                    <img src="assets/Icon.png" alt="Orioclub Icon" class="site-header__icon">
+                    Orioclub
+                </a>
+                <nav class="site-header__nav">
+                    <a href="#about">À propos</a>
+                    <a href="#members">Membres</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
 
-      <main>
-        <section class="section section--hero" id="mission">
-          <div class="container hero">
-            <div class="hero__copy">
-              <p class="hero__eyebrow">Carte postale du futur</p>
-              <h1 class="hero__title">
-                Choisir sa prochaine destination scolaire avec confiance
-              </h1>
-              <p class="hero__lead">
-                On trace des itinéraires personnalisés, on décortique les
-                programmes et on prépare chaque dossier comme une expédition. Tu
-                viens ?
-              </p>
-              <div class="hero__cta">
-                <a class="btn btn--solid" href="#contact"
-                  >Prendre rendez-vous</a
-                >
-                <a class="btn btn--ghost" href="#membres"
-                  >Rencontrer l'équipe</a
-                >
-              </div>
-              <dl class="hero__metrics">
-                <div>
-                  <dt>86%</dt>
-                  <dd>des membres décrochent leur premier choix</dd>
+        <main class="container">
+            <section class="hero">
+                <div class="hero__copy">
+                    <h1 class="hero__title">Là où les voyages commencent.</h1>
+                    <p class="hero__lead">Un club pour les explorateurs, les rêveurs et les bâtisseurs du Lycée Moulay Youssef. On partage, on crée, on grandit.</p>
+                    <a href="#members" class="btn hero__cta">Rencontrer le club</a>
                 </div>
-                <div>
-                  <dt>+30</dt>
-                  <dd>universités & programmes partenaires</dd>
+                <div class="hero__poster">
+                    <div class="hero__poster-placeholder">
+                        <p>Ajoutez votre <code>poster.jpg</code> dans le dossier <code>assets</code> pour l'afficher ici.</p>
+                    </div>
+                    <!-- L'image du poster sera ajoutée ici par le script si elle existe -->
                 </div>
-                <div>
-                  <dt>12</dt>
-                  <dd>ateliers guidés par trimestre</dd>
-                </div>
-              </dl>
-            </div>
-            <div class="hero__poster" aria-hidden="true">
-              <div class="poster">
-                <div class="poster__sun"></div>
-                <div class="poster__mountains"></div>
-                <div class="poster__birds"></div>
-                <div class="poster__stamp">LMY</div>
-                <p class="poster__caption">
-                  Club d'orientation · Voyage académique
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mission-points container">
-            <article class="mission-card">
-              <h2>Écoute dédiée</h2>
-              <p>
-                Coaching individuel ou en petits groupes pour clarifier chaque
-                trajectoire.
-              </p>
-            </article>
-            <article class="mission-card">
-              <h2>Outils concrets</h2>
-              <p>
-                Cartes de filières, veille opportunités, modèles de lettres et
-                CV.
-              </p>
-            </article>
-            <article class="mission-card">
-              <h2>Mentors alliés</h2>
-              <p>
-                Alumni & partenaires académiques pour relire, conseiller,
-                propulser.
-              </p>
-            </article>
-          </div>
-        </section>
+            </section>
 
-        <section class="section section--members" id="membres">
-          <div class="container members">
-            <div class="section__heading">
-              <p class="section__eyebrow">Le collectif</p>
-              <h2 class="section__title">
-                Facilitatrices, mentors et éclaireurs
-              </h2>
-              <p class="section__lead">
-                La liste se met à jour automatiquement depuis
-                <code>members.txt</code>. Ajoute une ligne et la carte se
-                remplit.
-              </p>
-            </div>
-            <div
-              class="members__grid members-list"
-              id="members-list"
-              aria-live="polite"
-            >
-              <p class="members-list__loading">Chargement des membres…</p>
-            </div>
-          </div>
-        </section>
+            <div class="content-box">
+                <section id="about" class="section">
+                    <h2 class="section__title">Notre Mission</h2>
+                    <p>Orioclub est un espace dédié à l'exploration des passions et à la préparation de l'avenir. Nous organisons des ateliers, des rencontres avec des professionnels et des projets collaboratifs pour aider chaque membre à trouver sa voie et à construire un parcours qui a du sens.</p>
+                </section>
 
-        <section class="section section--contact" id="contact">
-          <div class="container contact">
-            <div class="contact__panel">
-              <header class="section__heading">
-                <p class="section__eyebrow">Contact</p>
-                <h2 class="section__title">Passe au local ou écris-nous</h2>
-              </header>
-              <p class="contact__intro">
-                Le club est ouvert chaque jeudi midi et vendredi après les
-                cours. Une question urgente ? On répond sous 48&nbsp;heures
-                maximum.
-              </p>
-              <ul class="contact__details">
-                <li>
-                  <span class="contact__label">Email</span>
-                  <a href="mailto:orientation@lm-youssef.ma"
-                    >orientation@lm-youssef.ma</a
-                  >
-                </li>
-                <li>
-                  <span class="contact__label">Téléphone</span>
-                  <a href="tel:+212620000000">+212 6 20 00 00 00</a>
-                </li>
-                <li>
-                  <span class="contact__label">Salle</span>
-                  Bâtiment B · 1er étage · Espace Club
-                </li>
-                <li>
-                  <span class="contact__label">Instagram</span>
-                  <a
-                    href="https://instagram.com/orioclub"
-                    target="_blank"
-                    rel="noreferrer"
-                    >@orioclub</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <aside class="contact__card" aria-label="Infos pratiques">
-              <p class="contact__badge">Entrée libre</p>
-              <h3>Stand orientation & café</h3>
-              <p>
-                Ressources imprimées, cartes des campus, fiches opportunités et
-                un coin pour travailler ses dossiers tranquillement.
-              </p>
-              <p class="contact__footnote">
-                Ramène ton carnet · Wi-Fi disponible · Impression sur place
-              </p>
-            </aside>
-          </div>
-        </section>
-      </main>
+                <section id="members" class="section">
+                    <h2 class="section__title">Nos Membres</h2>
+                    <div class="members-list" id="members-list">
+                        <!-- Les membres seront chargés ici par script.js -->
+                    </div>
+                </section>
 
-      <footer class="site-footer">
-        <div class="container site-footer__inner">
-          <p class="site-footer__brand">
-            Club de l'orientation et opportunités scholaires — Lycée Moulay
-            Youssef
-          </p>
-          <button
-            class="animation-toggle"
-            type="button"
-            data-animation-toggle
-            aria-pressed="true"
-          >
-            <span class="animation-toggle__label" data-animation-status
-              >Animation activée</span
-            >
-          </button>
-          <p class="site-footer__note">
-            © <span data-year></span> · Tous droits réservés.
-          </p>
-        </div>
-      </footer>
+                <section id="contact" class="section">
+                    <h2 class="section__title">Contactez-nous</h2>
+                    <ul class="contact-list">
+                        <li>Email: <a href="mailto:contact@orioclub.com">contact@orioclub.com</a></li>
+                        <li>Instagram: <a href="https://instagram.com/orioclub" target="_blank">@orioclub</a></li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; <span data-year></span> Orioclub. Tous droits réservés.</p>
+        </footer>
     </div>
 
     <script src="script.js" defer></script>
-  </body>
+</body>
 </html>

@@ -1,170 +1,86 @@
-const animationToggle = document.querySelector("[data-animation-toggle]");
-const animationStatus = document.querySelector("[data-animation-status]");
-const membersList = document.getElementById("members-list");
-const yearTargets = document.querySelectorAll("[data-year]");
-const prefersReducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-);
-const STORAGE_KEY = "orioclub-ambient";
-
-function applyAnimationState(enabled) {
-  document.body.classList.toggle("is-animated", enabled);
-
-  if (animationToggle) {
-    animationToggle.setAttribute("aria-pressed", String(enabled));
-  }
-  if (animationStatus) {
-    animationStatus.textContent = enabled
-      ? "Animation activée"
-      : "Animation désactivée";
-  }
-}
-
-function initAnimationControls() {
-  if (!animationToggle) return;
-
-  let storedPreference = null;
-  try {
-    storedPreference = localStorage.getItem(STORAGE_KEY);
-  } catch (error) {
-    storedPreference = null;
-  }
-
-  const initialState =
-    storedPreference === "on"
-      ? true
-      : storedPreference === "off"
-        ? false
-        : !prefersReducedMotion.matches;
-
-  applyAnimationState(initialState);
-
-  animationToggle.addEventListener("click", () => {
-    const nextState = !document.body.classList.contains("is-animated");
-    applyAnimationState(nextState);
-    try {
-      localStorage.setItem(STORAGE_KEY, nextState ? "on" : "off");
-    } catch (error) {
-      /* stockage optionnel */
-    }
-  });
-
-  const handleMotionPreference = (event) => {
-    let preference = null;
-    try {
-      preference = localStorage.getItem(STORAGE_KEY);
-    } catch (error) {
-      preference = null;
-    }
-    if (preference !== null) return;
-    applyAnimationState(!event.matches);
-  };
-
-  if (typeof prefersReducedMotion.addEventListener === "function") {
-    prefersReducedMotion.addEventListener("change", handleMotionPreference);
-  } else if (typeof prefersReducedMotion.addListener === "function") {
-    prefersReducedMotion.addListener(handleMotionPreference);
-  }
-}
-
-const placeholderAvatar = "assets/polaroid-placeholder.png";
-
-function parseMembers(text) {
-  return text
-    .split("\n")
-    .map((line) => line.trim())
-    .filter((line) => line.length && !line.startsWith("#"))
-    .map((line) => {
-      const [name = "", role = "", description = "", avatar = ""] = line
-        .split("|")
-        .map((part) => part.trim());
-      return { name, role, description, avatar };
-    })
-    .filter((member) => member.name);
-}
-
-function renderMembers(members) {
-  if (!membersList) return;
-  membersList.innerHTML = "";
-
-  if (!members.length) {
-    const empty = document.createElement("p");
-    empty.className = "members-list__empty";
-    empty.textContent = "Aucun membre renseigné pour le moment.";
-    membersList.append(empty);
-    return;
-  }
-
-  members.forEach(({ name, role, description, avatar }) => {
-    const card = document.createElement("article");
-    card.className = "members-card";
-
-    const header = document.createElement("div");
-    header.className = "members-card__header";
-
-    const avatarEl = document.createElement("img");
-    avatarEl.className = "members-card__avatar";
-    avatarEl.loading = "lazy";
-    avatarEl.alt = `Portrait de ${name}`;
-    avatarEl.src = avatar || placeholderAvatar;
-    avatarEl.addEventListener("error", () => {
-      if (avatarEl.src.includes(placeholderAvatar)) return;
-      avatarEl.src = placeholderAvatar;
-    });
-
-    const titleWrapper = document.createElement("div");
-
-    const nameEl = document.createElement("h3");
-    nameEl.className = "members-card__name";
-    nameEl.textContent = name;
-
-    const roleEl = document.createElement("p");
-    roleEl.className = "members-card__role";
-    roleEl.textContent = role || "Membre";
-
-    titleWrapper.append(nameEl, roleEl);
-    header.append(avatarEl, titleWrapper);
-
-    const descEl = document.createElement("p");
-    descEl.className = "members-card__description";
-    descEl.textContent = description || "Description à venir.";
-
-    card.append(header, descEl);
-    membersList.append(card);
-  });
-}
-
-async function loadMembers() {
-  if (!membersList) return;
-
-  try {
-    const response = await fetch("members.txt", { cache: "no-cache" });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    const text = await response.text();
-    const members = parseMembers(text);
-    renderMembers(members);
-  } catch (error) {
-    membersList.innerHTML = "";
-    const errorMessage = document.createElement("p");
-    errorMessage.className = "members-list__error";
-    errorMessage.textContent =
-      "Impossible de charger la liste des membres. Vérifiez que le fichier members.txt est présent.";
-    membersList.append(errorMessage);
-  }
-}
-
-function initYear() {
-  if (!yearTargets.length) return;
-  const currentYear = new Date().getFullYear();
-  yearTargets.forEach((element) => {
-    element.textContent = String(currentYear);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  initAnimationControls();
-  loadMembers();
-  initYear();
+    const membersList = document.getElementById("members-list");
+    const yearSpan = document.querySelector("[data-year]");
+    const posterContainer = document.querySelector(".hero__poster");
+
+    // Set current year
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Fetch and display members
+    async function loadMembers() {
+        if (!membersList) return;
+        membersList.innerHTML = '<p>Chargement des membres...</p>';
+
+        try {
+            const response = await fetch("members.txt", { cache: "no-cache" });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const text = await response.text();
+            const members = parseMembers(text);
+            renderMembers(members);
+        } catch (error) {
+            membersList.innerHTML = `<p style="color: red;">Erreur: Impossible de charger les membres. Assurez-vous que le fichier members.txt existe.</p>`;
+            console.error("Failed to load members:", error);
+        }
+    }
+
+    function parseMembers(text) {
+        return text
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line && !line.startsWith('#'))
+            .map(line => {
+                const [name, role, description, avatar] = line.split('|').map(s => s.trim());
+                return { name, role, description, avatar };
+            })
+            .filter(member => member.name);
+    }
+
+    function renderMembers(members) {
+        membersList.innerHTML = '';
+        if (members.length === 0) {
+            membersList.innerHTML = '<p>Aucun membre à afficher.</p>';
+            return;
+        }
+
+        members.forEach(({ name, role, description, avatar }) => {
+            const card = document.createElement('div');
+            card.className = 'members-card';
+
+            const avatarSrc = avatar || 'assets/polaroid-placeholder.png';
+
+            card.innerHTML = `
+                <img src="${avatarSrc}" alt="Avatar de ${name}" class="members-card__avatar" onerror="this.onerror=null;this.src='assets/polaroid-placeholder.png';">
+                <h3 class="members-card__name">${name}</h3>
+                <p class="members-card__role">${role || 'Membre'}</p>
+                <p class="members-card__description">${description || 'Aucune description.'}</p>
+            `;
+            membersList.appendChild(card);
+        });
+    }
+
+    // Check for poster.jpg
+    async function checkPoster() {
+        if (!posterContainer) return;
+
+        const posterUrl = 'assets/poster.jpg';
+        try {
+            const response = await fetch(posterUrl, { method: 'HEAD', cache: 'no-cache' });
+            if (response.ok) {
+                const img = document.createElement('img');
+                img.src = posterUrl;
+                img.alt = "Poster du club";
+                posterContainer.innerHTML = ''; // Clear placeholder
+                posterContainer.appendChild(img);
+            }
+        } catch (error) {
+            // Poster not found, do nothing, placeholder will be shown
+        }
+    }
+
+    loadMembers();
+    checkPoster();
 });
