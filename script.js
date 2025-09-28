@@ -2,6 +2,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const membersList = document.getElementById("members-list");
     const yearSpan = document.querySelector("[data-year]");
     const posterContainer = document.querySelector(".hero__poster");
+    const toggleAnimBtn = document.getElementById('toggle-anim-btn');
+
+    // Apply persisted reduce-motion preference
+    const RM_KEY = 'orioclub-reduce-motion';
+    const persisted = localStorage.getItem(RM_KEY);
+    if (persisted === 'true') {
+        document.body.classList.add('reduce-motion');
+    }
+    updateAnimToggleButton();
+
+    function updateAnimToggleButton() {
+        if (!toggleAnimBtn) return;
+        const isReduced = document.body.classList.contains('reduce-motion');
+        toggleAnimBtn.setAttribute('aria-pressed', String(isReduced));
+        toggleAnimBtn.textContent = isReduced ? 'Activer les animations' : 'Désactiver les animations';
+    }
+
+    if (toggleAnimBtn) {
+        toggleAnimBtn.addEventListener('click', () => {
+            document.body.classList.toggle('reduce-motion');
+            const isReduced = document.body.classList.contains('reduce-motion');
+            localStorage.setItem(RM_KEY, String(isReduced));
+            updateAnimToggleButton();
+        });
+    }
 
     // Set current year
     if (yearSpan) {
@@ -40,9 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderMembers(members) {
-        membersList.innerHTML = '';
+        const list = membersList;
+        if (!list) return;
+        list.innerHTML = '';
         if (members.length === 0) {
-            membersList.innerHTML = '<p>Aucun membre à afficher.</p>';
+            list.innerHTML = '<p>Aucun membre à afficher.</p>';
             return;
         }
 
@@ -53,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const avatarSrc = avatar || 'assets/polaroid-placeholder.png';
 
             card.innerHTML = `
-                <img src="${avatarSrc}" alt="Avatar de ${name}" class="members-card__avatar" onerror="this.onerror=null;this.src='assets/polaroid-placeholder.png';">
+                <img src="${avatarSrc}" alt="Avatar de ${name}" class="members-card__avatar" onerror="this.onerror=null;this.src='assets/polaroid-placeholder.png';" loading="lazy" decoding="async" width="100" height="100">
                 <h3 class="members-card__name">${name}</h3>
                 <p class="members-card__role">${role || 'Membre'}</p>
                 <p class="members-card__description">${description || 'Aucune description.'}</p>
             `;
-            membersList.appendChild(card);
+            list.appendChild(card);
         });
     }
 
@@ -73,12 +100,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 const img = document.createElement('img');
                 img.src = posterUrl;
                 img.alt = "Poster du club";
+                img.loading = 'lazy';
+                img.decoding = 'async';
                 posterContainer.innerHTML = ''; // Clear placeholder
                 posterContainer.appendChild(img);
             }
         } catch (error) {
             // Poster not found, do nothing, placeholder will be shown
         }
+    }
+
+    // Scrollspy for nav active link
+    const navLinks = Array.from(document.querySelectorAll('.site-header__nav a[href^="#"]'));
+    const sections = navLinks
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+    if ('IntersectionObserver' in window && sections.length) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = "#" + entry.target.id;
+                    navLinks.forEach(link => {
+                        const isActive = link.getAttribute('href') === id;
+                        link.classList.toggle('active', isActive);
+                        if (isActive) {
+                            link.setAttribute('aria-current', 'page');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.1 });
+
+        sections.forEach(sec => observer.observe(sec));
     }
 
     loadMembers();
