@@ -1,13 +1,7 @@
 # Format : Nom | Rôle | Description | Image (optionnel)
 # L'image peut être un chemin relatif vers /assets ou une URL complète.
 # Exemple : Fatima Zahra | Responsable admission | Pilote les ateliers Parcoursup. | assets/fatima.jpg
-
-Idriss A. | Président du club | Coordonne les rendez-vous hebdomadaires et le mentorat. | assets/member1.jpg
-Noura B. | Mentore design | Aide à constituer des portfolios et dossiers créatifs. | assets/member2.jpg
-Yasmine E. | Coach admissions internationales | Suivi des dossiers USA/Canada et entretien en anglais. | assets/member3.jpgt : Nom | Rôle | Description | Image (optionnel)
-# L’image peut être un chemin relatif vers /assets ou une URL complète.
-# Exemple : Fatima Zahra | Responsable admission | Pilote les ateliers Parcoursup. | assets/fatima.jpg
-
-Idriss A. | Président du club | Coordonne les rendez-vous hebdomadaires et le mentorat. | assets/polaroid-placeholder.png
-Noura B. | Mentore design | Aide à constituer des portfolios et dossiers créatifs. | assets/polaroid-placeholder.png
-Yasmine E. | Coach admissions internationales | Suivi des dossiers USA/Canada et entretien en anglais. |
+Meriam | admin | idk what she does. | assets/water.jpg
+Zeki | emotional support | a77777 | assets/water.jpg
+Taha | bogos | totr | assets/water.jpg
+walsoup | nicest person (not meriam) | water water water | assets/water.jpg
