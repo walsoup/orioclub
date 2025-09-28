@@ -119,8 +119,6 @@ function initScrollSpy() {
 
   if (!sectionMap.size) return;
 
-  updateNavCurrent(links[0]);
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
