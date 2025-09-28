@@ -116,27 +116,34 @@ document.addEventListener("DOMContentLoaded", () => {
         .map(a => document.querySelector(a.getAttribute('href')))
         .filter(Boolean);
 
-    if ('IntersectionObserver' in window && sections.length) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = "#" + entry.target.id;
-                    navLinks.forEach(link => {
-                        const isActive = link.getAttribute('href') === id;
-                        link.classList.toggle('active', isActive);
-                        if (isActive) {
-                            link.setAttribute('aria-current', 'page');
-                        } else {
-                            link.removeAttribute('aria-current');
-                        }
-                    });
-                }
-            });
-        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.1 });
+  if ('IntersectionObserver' in window && sections.length) {
+    let currentActiveId = '';
+    
+    const observer = new IntersectionObserver((entries) => {
+      const visibleSections = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      
+      if (visibleSections.length > 0) {
+        const mostVisible = visibleSections[0];
+        const id = "#" + mostVisible.target.id;
+        
+        if (id !== currentActiveId) {
+          currentActiveId = id;
+          navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === id;
+            link.classList.toggle('active', isActive);
+            if (isActive) {
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+      }
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: [0.1, 0.3, 0.5, 0.7] });
 
-        sections.forEach(sec => observer.observe(sec));
-    }
-
-    loadMembers();
+    sections.forEach(sec => observer.observe(sec));
+  }    loadMembers();
     checkPoster();
 });

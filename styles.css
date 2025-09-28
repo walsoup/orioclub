@@ -67,6 +67,12 @@ img {
   margin-inline: auto;
 }
 
+@media (max-width: 480px) {
+  .container {
+    width: min(1000px, 95vw);
+  }
+}
+
 /* --- Background Animations (from reference) --- */
 .background-container {
   position: fixed;
@@ -75,9 +81,9 @@ img {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: linear-gradient(135deg, #ffdabe, #ffc0cb 30%, #e6e6fa 60%, #add8e6 100%);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: linear-gradient(135deg, #fff4e6, #ffe4f0 25%, #f0f4ff 65%, #e6f7ff 100%);
+  background-size: 300% 300%;
+  animation: gradient 20s ease infinite;
 }
 
 @keyframes gradient {
@@ -97,7 +103,7 @@ img {
   height: 450px;
   top: -100px;
   left: -100px;
-  background: rgba(170, 180, 200, 0.5);
+  background: rgba(255, 200, 180, 0.3);
   border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
   animation: blobFloat 20s infinite alternate;
 }
@@ -107,7 +113,7 @@ img {
   height: 550px;
   bottom: -150px;
   right: -150px;
-  background: rgba(60, 140, 130, 0.6);
+  background: rgba(180, 220, 255, 0.35);
   border-radius: 70% 30% 40% 60% / 60% 40% 70% 30%;
   animation: blobFloat 25s infinite alternate-reverse;
 }
@@ -137,6 +143,13 @@ body.reduce-motion .blob { display: none; }
 body.reduce-motion .btn::after { display: none; }
 body.reduce-motion .site-header__nav a::after { display: none; }
 body.reduce-motion .site-header__nav a { transform: none !important; }
+body.reduce-motion .btn { transform: none !important; }
+body.reduce-motion .site-header__nav a,
+body.reduce-motion .btn {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
 
 /* Toggle button active state */
 #toggle-anim-btn[aria-pressed="true"] {
@@ -454,7 +467,23 @@ main.container {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* Mobile and tablet responsive styles */
 @media (max-width: 768px) {
+  .site-header__inner {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .site-header__brand {
+    font-size: 1.25rem;
+  }
+  
+  .site-header__nav {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  
   .hero {
     grid-template-columns: 1fr;
   }
@@ -464,5 +493,57 @@ main.container {
   }
   .hero__cta {
     justify-self: center;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 12px 0;
+  }
+  
+  .site-header__inner {
+    gap: 0.75rem;
+  }
+  
+  .site-header__brand {
+    font-size: 1.1rem;
+  }
+  
+  .site-header__nav {
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .site-header__nav a {
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Very small screens and weird aspect ratios */
+@media (max-width: 360px), (max-height: 600px) and (max-width: 768px) {
+  .site-header {
+    padding: 8px 0;
+  }
+  
+  .site-header__brand {
+    font-size: 1rem;
+    gap: 8px;
+  }
+  
+  .site-header__icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .site-header__nav {
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  .site-header__nav a {
+    padding: 0.25rem 0.5rem;
   }
 }
