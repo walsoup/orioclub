@@ -1,4 +1,0 @@
-# title | date | location | description | image(optional)
-Beach Cleanup | 2025-10-14 | Plage Centrale | Venez aider à nettoyer la plage, collation offerte. | assets/poster.jpg
-Hack Night | 2025-11-02 | Lab 3 | Code, pizza, fun.
-Marché Solidaire | 2025-12-05 | Place du Marché | Stands locaux, musique et ateliers. | assets/polaroid-placeholder.png

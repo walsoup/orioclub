@@ -217,54 +217,91 @@ main.container {
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
-  margin-bottom: 3rem;
+  gap: clamp(1.75rem, 3.5vw, 2.85rem);
+  margin-top: clamp(5rem, 6vw, 6.5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4.25rem);
 }
-
+.hero__copy {
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: clamp(1.35rem, 2.5vw, 2.25rem);
+  align-self: center;
+}
+.hero__title {
+  font-family: "Fredoka One", cursive;
+  font-size: clamp(3.3rem, 5vw, 4.6rem);
+  font-weight: 400;
+  line-height: 0.94;
+  color: #ffffff;
+  letter-spacing: -0.035em;
+  text-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.23);
+}
+.hero__lead {
+  font-size: clamp(1.15rem, 1.75vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.82);
+  max-width: min(36ch, 30rem);
+}
+.hero__cta {
+  justify-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-inline: clamp(1.5rem, 3vw, 1.85rem);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+.hero__cta .chev {
+  width: 1.25rem;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.hero__cta:hover .chev,
+.hero__cta:focus-visible .chev {
+  transform: translateX(0.35rem);
+}
 .hero__poster {
-  width: 100%;
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
+  border-radius: clamp(1.35rem, 3vw, 1.85rem);
+  padding: clamp(1.5rem, 3.5vw, 2.1rem);
+  box-shadow: 0 24px 54px -28px rgba(15, 18, 60, 0.52);
+  overflow: hidden;
+  backdrop-filter: blur(18px);
   aspect-ratio: 3 / 4;
-  background: #f0f0f0;
-  border: 2px dashed var(--accent);
-  border-radius: var(--radius-medium);
   display: grid;
   place-items: center;
-  overflow: hidden;
 }
-
+.hero__poster::before {
+  content: "";
+  position: absolute;
+  inset: clamp(0.35rem, 1vw, 0.55rem);
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  pointer-events: none;
+}
 .hero__poster img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: calc(clamp(1.35rem, 3vw, 1.85rem) - clamp(0.65rem, 1.8vw, 0.95rem));
+  box-shadow: 0 18px 45px -28px rgba(0, 0, 0, 0.55);
 }
-
-.hero__poster-placeholder {
-  text-align: center;
-  color: var(--text-muted);
-}
-
-.hero__poster-placeholder span {
-  font-family: monospace;
-  background: #e0e0e0;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.hero__copy {
+.hero__poster--placeholder {
   display: grid;
+  place-items: center;
   gap: 1rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+  font-family: "Fredoka One", cursive;
 }
-
-.hero__title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-}
-
-.hero__lead {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 35ch;
+.hero__poster--placeholder strong {
+  font-size: clamp(1.55rem, 2.2vw, 2.05rem);
+  display: block;
+  letter-spacing: 0.04em;
 }
 
 /* Squiggle Path Animation */
@@ -375,7 +412,6 @@ main.container {
   pointer-events: none;
 }
 .btn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.14), inset 0 1px 0 rgba(255,255,255,0.65);
   opacity: 1; /* override base a:hover opacity */
 }
@@ -430,7 +466,9 @@ main.container {
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
   border-bottom: 2px dashed var(--accent);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   padding-bottom: 0.75rem;
 }
 
@@ -526,10 +564,9 @@ main.container {
 
 /* Title icons */
 .icon-title {
-  width: 1.15em;
-  height: 1.15em;
-  vertical-align: -0.2em;
-  margin-right: 0.4rem;
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
 }
 .event-card__meta {
   margin: 0;
@@ -587,17 +624,32 @@ main.container {
   
   .hero {
     grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.75rem;
   }
   .hero__copy {
-    order: -1;
+    order: 2;
+    justify-items: center;
+    gap: 1.5rem;
+    max-width: none;
+  }
+  .hero__title,
+  .hero__lead {
     text-align: center;
+    margin-inline: 0;
+  }
+  .hero__lead {
+    justify-self: center;
   }
   .hero__cta {
     justify-self: center;
   }
-  .hero__cta { display: inline-flex; align-items: center; gap: 0.5rem; }
-  .hero__cta .chev { width: 1em; height: 1em; transition: transform 0.2s ease; }
-  .hero__cta:hover .chev { transform: translateX(3px); }
+  .hero__poster {
+    order: 1;
+    justify-self: center;
+    margin-inline: auto;
+    max-width: 360px;
+  }
 }
 
 /* Small mobile phones */
