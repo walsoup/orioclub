@@ -67,16 +67,18 @@ function initAnimationControls() {
   }
 }
 
+const placeholderAvatar = "assets/polaroid-placeholder.png";
+
 function parseMembers(text) {
   return text
     .split("\n")
     .map((line) => line.trim())
     .filter((line) => line.length && !line.startsWith("#"))
     .map((line) => {
-      const [name = "", role = "", description = ""] = line
+      const [name = "", role = "", description = "", avatar = ""] = line
         .split("|")
         .map((part) => part.trim());
-      return { name, role, description };
+      return { name, role, description, avatar };
     })
     .filter((member) => member.name);
 }
@@ -93,9 +95,24 @@ function renderMembers(members) {
     return;
   }
 
-  members.forEach(({ name, role, description }) => {
+  members.forEach(({ name, role, description, avatar }) => {
     const card = document.createElement("article");
     card.className = "members-card";
+
+    const header = document.createElement("div");
+    header.className = "members-card__header";
+
+    const avatarEl = document.createElement("img");
+    avatarEl.className = "members-card__avatar";
+    avatarEl.loading = "lazy";
+    avatarEl.alt = `Portrait de ${name}`;
+    avatarEl.src = avatar || placeholderAvatar;
+    avatarEl.addEventListener("error", () => {
+      if (avatarEl.src.includes(placeholderAvatar)) return;
+      avatarEl.src = placeholderAvatar;
+    });
+
+    const titleWrapper = document.createElement("div");
 
     const nameEl = document.createElement("h3");
     nameEl.className = "members-card__name";
@@ -105,10 +122,14 @@ function renderMembers(members) {
     roleEl.className = "members-card__role";
     roleEl.textContent = role || "Membre";
 
+    titleWrapper.append(nameEl, roleEl);
+    header.append(avatarEl, titleWrapper);
+
     const descEl = document.createElement("p");
+    descEl.className = "members-card__description";
     descEl.textContent = description || "Description à venir.";
 
-    card.append(nameEl, roleEl, descEl);
+    card.append(header, descEl);
     membersList.append(card);
   });
 }

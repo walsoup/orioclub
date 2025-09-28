@@ -1,13 +1,13 @@
 # Orioclub – Club de l'orientation et opportunités scholaires
 
-Site vitrine épuré du club d'orientation du Lycée Moulay Youssef. La page se concentre sur l'essentiel : notre mission, les membres actifs et les moyens de contact.
+Site vitrine à l’esthétique "travel poster" pour le club d'orientation du Lycée Moulay Youssef. L’interface propose un héros illustré, une mission en cartes et des profils membres alimentés depuis un fichier texte.
 
 ## Structure
 
-- `index.html` – Mise en page minimaliste avec l'icône du club, les trois sections principales et le bouton de bascule de l'animation dans le pied de page.
-- `styles.css` – Styles sobres avec ambiance lumineuse animée (désactivable) et cartes responsives.
-- `script.js` – Bascule d'animation, chargement dynamique des membres depuis `members.txt`, mise à jour automatique de l'année.
-- `members.txt` – Liste des membres (format `Nom | Rôle | Description`) facilement extensible.
+- `index.html` – Structure principale : héro poster rétro, cartes mission, grille des membres et bloc contact.
+- `styles.css` – Palette nocturne avec gradients animés, textures grainées et composants inspirés d'affiches vintage.
+- `script.js` – Bascule d'animation, chargement dynamique des membres (texte + avatar optionnel), mise à jour automatique de l'année.
+- `members.txt` – Liste des membres (format `Nom | Rôle | Description | Image (optionnel)`).
 - `assets/Icon.png` – Icône officielle utilisée pour le header et le favicon.
 
 ## Démarrer le site
@@ -25,12 +25,12 @@ Puis visitez <http://localhost:8000>.
 Le fichier `members.txt` est lu côté client. Chaque ligne active suit ce format :
 
 ```
-Nom Prénom | Rôle court | Description plus détaillée
+Nom Prénom | Rôle court | Description plus détaillée | Chemin image ou URL
 ```
 
 - Les lignes commençant par `#` sont ignorées (commentaires).
-- Ajoutez autant de lignes que nécessaire pour enrichir la section « Membres ».
-- Enregistrez le fichier, actualisez la page, la liste se mettra à jour automatiquement.
+- Le champ image est optionnel : laissez-le vide pour utiliser le placeholder `assets/polaroid-placeholder.png`.
+- Ajoutez autant de lignes que nécessaire et actualisez la page pour voir les cartes se mettre à jour.
 
 ## Animation et accessibilité
 
@@ -40,7 +40,7 @@ Nom Prénom | Rôle court | Description plus détaillée
 
 ## Personnalisation rapide
 
-- Adaptez les textes des sections directement dans `index.html`.
-- Remplacez `assets/Icon.png` par votre logo (même nom de fichier pour éviter de modifier le HTML).
-- Ajustez les couleurs/ombres dans `styles.css` via les variables `:root`.
-- Pour modifier les messages de contact ou les liens, mise à jour rapide dans la section correspondante de `index.html`.
+- Modifiez les textes des sections directement dans `index.html`.
+- Remplacez `assets/Icon.png` ou ajoutez vos propres visuels dans `assets/` pour les membres.
+- Ajustez les couleurs/ombres dans `styles.css` via les variables `:root` (background animé, accents, textures).
+- Mettez à jour les coordonnées, liens et CTA dans la section contact de `index.html`.

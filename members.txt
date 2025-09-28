@@ -1,4 +1,7 @@
-# Format : Nom | Rôle | Description
-TOTR | wspeed | imdudeman
-idk | Président du club | Coordonne les rendez-vous hebdomadaires et le mentorat.
-me | Mentore design | Aide à constituer des portfolios et dossiers créatifs.
+# Format : Nom | Rôle | Description | Image (optionnel)
+# L’image peut être un chemin relatif vers /assets ou une URL complète.
+# Exemple : Fatima Zahra | Responsable admission | Pilote les ateliers Parcoursup. | assets/fatima.jpg
+
+Idriss A. | Président du club | Coordonne les rendez-vous hebdomadaires et le mentorat. | assets/polaroid-placeholder.png
+Noura B. | Mentore design | Aide à constituer des portfolios et dossiers créatifs. | assets/polaroid-placeholder.png
+Yasmine E. | Coach admissions internationales | Suivi des dossiers USA/Canada et entretien en anglais. |

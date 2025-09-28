@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;700&family=Inter:wght@400;600;700&family=Work+Sans:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/png" href="assets/Icon.png" />
@@ -47,53 +47,74 @@
       </header>
 
       <main>
-        <section class="section section--mission" id="mission">
-          <div class="container">
-            <div class="section__heading">
-              <p class="section__eyebrow">Notre mission</p>
-              <h1 class="section__title">
-                Offrir un repère simple pour choisir sa prochaine étape scolaire
+        <section class="section section--hero" id="mission">
+          <div class="container hero">
+            <div class="hero__copy">
+              <p class="hero__eyebrow">Carte postale du futur</p>
+              <h1 class="hero__title">
+                Choisir sa prochaine destination scolaire avec confiance
               </h1>
+              <p class="hero__lead">
+                On trace des itinéraires personnalisés, on décortique les
+                programmes et on prépare chaque dossier comme une expédition.
+                Tu viens ?
+              </p>
+              <div class="hero__cta">
+                <a class="btn btn--solid" href="#contact">Prendre rendez-vous</a>
+                <a class="btn btn--ghost" href="#membres">Rencontrer l'équipe</a>
+              </div>
+              <dl class="hero__metrics">
+                <div>
+                  <dt>86%</dt>
+                  <dd>des membres décrochent leur premier choix</dd>
+                </div>
+                <div>
+                  <dt>+30</dt>
+                  <dd>universités & programmes partenaires</dd>
+                </div>
+                <div>
+                  <dt>12</dt>
+                  <dd>ateliers guidés par trimestre</dd>
+                </div>
+              </dl>
             </div>
-            <p class="section__lead">
-              Nous accueillons les lycéennes et lycéens qui cherchent un coup de
-              main pour comprendre les filières, préparer leurs dossiers et
-              trouver des opportunités au Maroc comme à l'international.
-            </p>
-            <ul class="mission-list">
-              <li>
-                <h2>Écouter</h2>
-                <p>
-                  Un rendez-vous convivial pour clarifier envies et questions.
-                </p>
-              </li>
-              <li>
-                <h2>Orienter</h2>
-                <p>
-                  Des ressources actualisées et ciblées selon chaque projet.
-                </p>
-              </li>
-              <li>
-                <h2>Soutenir</h2>
-                <p>
-                  Mentorat entre pairs et accompagnement dans les démarches.
-                </p>
-              </li>
-            </ul>
+            <div class="hero__poster" aria-hidden="true">
+              <div class="poster">
+                <div class="poster__sun"></div>
+                <div class="poster__mountains"></div>
+                <div class="poster__birds"></div>
+                <div class="poster__stamp">LMY</div>
+                <p class="poster__caption">Club d'orientation · Voyage académique</p>
+              </div>
+            </div>
+          </div>
+          <div class="mission-points container">
+            <article class="mission-card">
+              <h2>Écoute dédiée</h2>
+              <p>Coaching individuel ou en petits groupes pour clarifier chaque trajectoire.</p>
+            </article>
+            <article class="mission-card">
+              <h2>Outils concrets</h2>
+              <p>Cartes de filières, veille opportunités, modèles de lettres et CV.</p>
+            </article>
+            <article class="mission-card">
+              <h2>Mentors alliés</h2>
+              <p>Alumni & partenaires académiques pour relire, conseiller, propulser.</p>
+            </article>
           </div>
         </section>
 
         <section class="section section--members" id="membres">
-          <div class="container">
+          <div class="container members">
             <div class="section__heading">
               <p class="section__eyebrow">Le collectif</p>
-              <h2 class="section__title">Membres actifs & mentors</h2>
+              <h2 class="section__title">Facilitatrices, mentors et éclaireurs</h2>
               <p class="section__lead">
                 La liste se met à jour automatiquement depuis
-                <code>members.txt</code>.
+                <code>members.txt</code>. Ajoute une ligne et la carte se remplit.
               </p>
             </div>
-            <div class="members-list" id="members-list" aria-live="polite">
+            <div class="members__grid members-list" id="members-list" aria-live="polite">
               <p class="members-list__loading">Chargement des membres…</p>
             </div>
           </div>
@@ -101,21 +122,23 @@
 
         <section class="section section--contact" id="contact">
           <div class="container contact">
-            <div class="section__heading">
-              <p class="section__eyebrow">Contact</p>
-              <h2 class="section__title">On répond en moins de 48&nbsp;h</h2>
-            </div>
-            <div class="contact__content">
-              <p>
-                Écris-nous ou passe dans notre salle pour discuter de ton
-                projet. Nous sommes joignables toute la semaine scolaire.
+            <div class="contact__panel">
+              <header class="section__heading">
+                <p class="section__eyebrow">Contact</p>
+                <h2 class="section__title">Passe au local ou écris-nous</h2>
+              </header>
+              <p class="contact__intro">
+                Le club est ouvert chaque jeudi midi et vendredi après les cours.
+                Une question urgente ? On répond sous 48&nbsp;heures maximum.
               </p>
               <ul class="contact__details">
                 <li>
                   <span class="contact__label">Email</span>
-                  <a href="mailto:orientation@lm-youssef.ma"
-                    >orientation@lm-youssef.ma</a
-                  >
+                  <a href="mailto:orientation@lm-youssef.ma">orientation@lm-youssef.ma</a>
+                </li>
+                <li>
+                  <span class="contact__label">Téléphone</span>
+                  <a href="tel:+212620000000">+212 6 20 00 00 00</a>
                 </li>
                 <li>
                   <span class="contact__label">Salle</span>
@@ -132,6 +155,15 @@
                 </li>
               </ul>
             </div>
+            <aside class="contact__card" aria-label="Infos pratiques">
+              <p class="contact__badge">Entrée libre</p>
+              <h3>Stand orientation & café</h3>
+              <p>
+                Ressources imprimées, cartes des campus, fiches opportunités et un coin pour travailler
+                ses dossiers tranquillement.
+              </p>
+              <p class="contact__footnote">Ramène ton carnet · Wi-Fi disponible · Impression sur place</p>
+            </aside>
           </div>
         </section>
       </main>
