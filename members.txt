@@ -1,0 +1,4 @@
+# Format : Nom | Rôle | Description
+TOTR | wspeed | imdudeman
+idk | Président du club | Coordonne les rendez-vous hebdomadaires et le mentorat.
+me | Mentore design | Aide à constituer des portfolios et dossiers créatifs.

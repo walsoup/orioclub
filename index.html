@@ -3,19 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Club de l'orientation et opportunités scholaires – Lycée Moulay Youssef
-    </title>
+    <title>Club de l'orientation — Lycée Moulay Youssef</title>
     <meta
       name="description"
-      content="Carnet d'aventure scolaire du Club de l'orientation et opportunités scholaires du Lycée Moulay Youssef. Ateliers, mentorat et bonnes adresses pour choisir son chemin."
+      content="Mission, membres et contact du Club de l'orientation et opportunités scholaires du Lycée Moulay Youssef."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Shadows+Into+Light&family=Architects+Daughter&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" href="assets/Icon.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -23,497 +22,115 @@
       <span class="ambient__gradient ambient__gradient--one"></span>
       <span class="ambient__gradient ambient__gradient--two"></span>
       <span class="ambient__gradient ambient__gradient--three"></span>
-      <span class="ambient__paper"></span>
     </div>
-
     <div class="page">
       <header class="site-header" id="accueil">
         <div class="container site-header__inner">
-          <a class="site-header__brand" href="#accueil" aria-label="Accueil">
-            <span class="brand-mark" aria-hidden="true">✈️</span>
-            <span class="brand-text">
-              Carnet d'orientation<br />
-              <span class="brand-text__accent"
-                >Club du Lycée Moulay Youssef</span
-              >
+          <a class="site-header__brand" href="#mission">
+            <img
+              src="assets/Icon.png"
+              class="site-header__icon"
+              alt=""
+              aria-hidden="true"
+            />
+            <span class="site-header__text">
+              <span class="site-header__eyebrow">Lycée Moulay Youssef</span>
+              <span class="site-header__title">Club de l'orientation</span>
             </span>
           </a>
-
-          <nav class="site-nav" aria-label="Navigation principale">
-            <button
-              class="site-nav__toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="menu"
-            >
-              <span class="site-nav__toggle-line"></span>
-              <span class="site-nav__toggle-line"></span>
-              <span class="site-nav__toggle-line"></span>
-              <span class="visually-hidden">Ouvrir la navigation</span>
-            </button>
-            <ul class="site-nav__list" id="menu">
-              <li><a class="site-nav__link" href="#mission">Mission</a></li>
-              <li>
-                <a class="site-nav__link" href="#programmes">Programmes</a>
-              </li>
-              <li>
-                <a class="site-nav__link" href="#opportunites">Opportunités</a>
-              </li>
-              <li>
-                <a class="site-nav__link" href="#evenements">Événements</a>
-              </li>
-              <li><a class="site-nav__link" href="#equipe">Équipe</a></li>
-              <li><a class="site-nav__link" href="#contact">Contact</a></li>
-            </ul>
+          <nav class="site-header__nav" aria-label="Sections principales">
+            <a href="#mission">Mission</a>
+            <a href="#membres">Membres</a>
+            <a href="#contact">Contact</a>
           </nav>
-
-          <button
-            class="animation-toggle"
-            type="button"
-            data-animation-toggle
-            aria-pressed="true"
-          >
-            <span class="animation-toggle__icon" aria-hidden="true">�️</span>
-            <span data-animation-status>Animation active</span>
-          </button>
         </div>
       </header>
 
       <main>
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="container hero__inner">
-            <div class="hero__content paper-card">
-              <p class="hero__eyebrow">Lycée Moulay Youssef · Rabat</p>
-              <h1 class="hero__title" id="hero-title">
-                Choisis ton prochain horizon scolaire
+        <section class="section section--mission" id="mission">
+          <div class="container">
+            <div class="section__heading">
+              <p class="section__eyebrow">Notre mission</p>
+              <h1 class="section__title">
+                Offrir un repère simple pour choisir sa prochaine étape scolaire
               </h1>
-              <p class="hero__lead">
-                On griffonne des cartes, on colle des idées, on partage des bons
-                plans d'études et on se motive ensemble pour franchir les
-                étapes.
-              </p>
-              <div class="hero__cta">
-                <a class="button button--primary" href="#contact">Écris-nous</a>
-                <a class="button button--ghost" href="#opportunites"
-                  >Nos trouvailles</a
-                >
-              </div>
-              <dl class="hero__stats" aria-label="Bilan de l'année passée">
-                <div class="hero__stat">
-                  <dt>320+</dt>
-                  <dd>Élèves accompagnés</dd>
-                </div>
-                <div class="hero__stat">
-                  <dt>45</dt>
-                  <dd>Mentor·e·s engagés</dd>
-                </div>
-                <div class="hero__stat">
-                  <dt>62</dt>
-                  <dd>Opportunités partagées</dd>
-                </div>
-              </dl>
             </div>
-            <div class="hero__visual" aria-hidden="true">
-              <figure class="polaroid">
-                <img
-                  src="assets/polaroid-placeholder.png"
-                  alt=""
-                  role="presentation"
-                />
-                <figcaption>Club de l'orientation</figcaption>
-              </figure>
-              <img
-                class="hero__sticker hero__sticker--compass"
-                src="assets/sticker-compass.png"
-                alt=""
-                role="presentation"
-              />
-              <img
-                class="hero__sticker hero__sticker--plane"
-                src="assets/sticker-plane.png"
-                alt=""
-                role="presentation"
-              />
-              <div class="hero__note">
-                <p>Chaque jeudi midi · Salle B12</p>
-                <span aria-hidden="true">➜</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="mission">
-          <div class="container">
-            <div class="section-board section-board--mint">
-              <div class="section__header">
-                <p class="section__eyebrow">Notre mission</p>
-                <h2 class="section__title">
-                  Un carnet rempli d’idées pour s’orienter sans stress
-                </h2>
-              </div>
-              <div class="split-grid">
-                <div class="split-grid__item split-grid__item--tape">
-                  <h3>Accompagner avec bienveillance</h3>
-                  <p>
-                    On crée un espace chaleureux où chaque élève peut parler de
-                    ses envies, même celles qui semblent folles, et repartir
-                    avec des pistes concrètes.
-                  </p>
-                </div>
-                <div class="split-grid__item split-grid__item--paper">
-                  <h3>Ouvrir le champ des possibles</h3>
-                  <p>
-                    On compile des programmes au Maroc et à l’international, des
-                    concours, des bourses et des stages pour révéler des
-                    trajectoires inattendues.
-                  </p>
-                </div>
-                <div class="split-grid__item split-grid__item--pin">
-                  <h3>Allumer la bonne étincelle</h3>
-                  <p>
-                    On anime des ateliers pratiques : pitch de projets,
-                    Parcoursup, lettres de motivation et rencontres inspirantes
-                    avec des alumni.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="programmes">
-          <div class="container">
-            <div class="section-board section-board--sunny">
-              <div class="section__header">
-                <p class="section__eyebrow">Nos formats préférés</p>
-                <h2 class="section__title">
-                  Des ateliers façon carnet de route pour avancer pas à pas
-                </h2>
-              </div>
-              <div class="cards-grid">
-                <article class="card card--notebook">
-                  <h3 class="card__title">Ateliers d'orientation</h3>
-                  <p class="card__body">
-                    On explore les filières, on cartographie les études et on
-                    met des couleurs sur les rêves des membres.
-                  </p>
-                  <ul class="chip-list" aria-label="Focus ateliers">
-                    <li class="chip">Mind mapping</li>
-                    <li class="chip">Parcoursup dédramatisé</li>
-                    <li class="chip">Immersions métiers</li>
-                  </ul>
-                </article>
-                <article class="card card--postit">
-                  <h3 class="card__title">Mentorat entre pairs</h3>
-                  <p class="card__body">
-                    Terminales, alumni et étudiant·e·s partenaires relisent les
-                    dossiers, boostent la confiance et partagent leurs astuces.
-                  </p>
-                  <ul class="chip-list" aria-label="Services mentorship">
-                    <li class="chip">Suivi mensuel</li>
-                    <li class="chip">Ressources perso</li>
-                    <li class="chip">Prépa entretiens</li>
-                  </ul>
-                </article>
-                <article class="card card--ticket">
-                  <h3 class="card__title">Laboratoire d'opportunités</h3>
-                  <p class="card__body">
-                    Veille collaborative sur les concours, summer camps, bourses
-                    et échanges. Alertes dès ouverture des inscriptions.
-                  </p>
-                  <ul class="chip-list" aria-label="Exemples d'opportunités">
-                    <li class="chip">Bourses AMCI</li>
-                    <li class="chip">Olympiades</li>
-                    <li class="chip">Summer schools</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="opportunites">
-          <div class="container">
-            <div class="section-board section-board--sky">
-              <div class="section__header">
-                <p class="section__eyebrow">
-                  À découper & coller dans ton agenda
-                </p>
-                <h2 class="section__title">
-                  Opportunités à ne pas rater ce trimestre
-                </h2>
-              </div>
-              <div class="timeline">
-                <article class="timeline__item timeline__item--stamp">
-                  <span class="timeline__date">15 octobre</span>
-                  <div class="timeline__content">
-                    <h3>Bootcamp IA & Data TeenLabs</h3>
-                    <p>
-                      Une semaine pour coder et analyser des données avec l’UM6P
-                      à Benguerir. Dossier à déposer avant le 2 octobre.
-                    </p>
-                    <a
-                      class="timeline__link"
-                      href="https://example.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      >Dossier en ligne</a
-                    >
-                  </div>
-                </article>
-                <article class="timeline__item timeline__item--tape">
-                  <span class="timeline__date">30 novembre</span>
-                  <div class="timeline__content">
-                    <h3>Bourses Horizons Francophones</h3>
-                    <p>
-                      Séjours d’études avec soutien linguistique et financier.
-                      Projet citoyen et résultats académiques demandés.
-                    </p>
-                    <a
-                      class="timeline__link"
-                      href="https://example.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      >En savoir plus</a
-                    >
-                  </div>
-                </article>
-                <article class="timeline__item timeline__item--pin">
-                  <span class="timeline__date">5 décembre</span>
-                  <div class="timeline__content">
-                    <h3>Challenge Innovation Moulay Youssef</h3>
-                    <p>
-                      48h d'idéation pour répondre à un défi local. Mentors du
-                      club + partenaires entreprises. Ouvert à tous les niveaux.
-                    </p>
-                    <a class="timeline__link" href="#contact"
-                      >S'inscrire auprès du club</a
-                    >
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="evenements">
-          <div class="container">
-            <div
-              class="section-board section-board--peach section__inner--stack"
-            >
-              <div class="section__header">
-                <p class="section__eyebrow">Vie du club</p>
-                <h2 class="section__title">
-                  Événements à punaiser sur ton mur
-                </h2>
-              </div>
-              <div class="events-grid">
-                <article class="event-card event-card--clip">
-                  <div class="event-card__heading">
-                    <span class="event-card__badge">09 OCT</span>
-                    <h3>Tables rondes métiers</h3>
-                  </div>
-                  <p>
-                    Trois parcours d'anciens élèves : médecine, architecture et
-                    ingénierie. On repart avec des conseils candidatures très
-                    concrets.
-                  </p>
-                  <ul class="event-card__meta">
-                    <li>18h00 · Salle Polyvalente</li>
-                    <li>Inscription recommandée</li>
-                  </ul>
-                </article>
-                <article class="event-card event-card--clip">
-                  <div class="event-card__heading">
-                    <span class="event-card__badge">22 OCT</span>
-                    <h3>Atelier Parcoursup Express</h3>
-                  </div>
-                  <p>
-                    On décortique la plateforme, on prépare des projets motivés
-                    punchy et on repart avec une check-list rassurante.
-                  </p>
-                  <ul class="event-card__meta">
-                    <li>16h30 · CDI</li>
-                    <li>30 places · gratuit</li>
-                  </ul>
-                </article>
-                <article class="event-card event-card--clip">
-                  <div class="event-card__heading">
-                    <span class="event-card__badge">12 NOV</span>
-                    <h3>Clinique CV & Lettre</h3>
-                  </div>
-                  <p>
-                    Séances individuelles de relecture pour mettre en valeur tes
-                    expériences et viser les programmes internationaux.
-                  </p>
-                  <ul class="event-card__meta">
-                    <li>14h00 · Espace Club</li>
-                    <li>Sur rendez-vous</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="impact">
-          <div class="container">
-            <div
-              class="section-board section-board--cream section__inner--stack"
-            >
-              <div class="section__header">
-                <p class="section__eyebrow">Impact</p>
-                <h2 class="section__title">Des carnets remplis de réussites</h2>
-              </div>
-              <div class="impact-grid">
-                <article class="impact-card impact-card--tape">
-                  <blockquote class="impact-card__quote">
-                    « Grâce au club, j'ai découvert un double diplôme ingénierie
-                    et design. On m'a aidée à affiner mon dossier, je vise
-                    maintenant mon premier choix sans paniquer ! »
-                  </blockquote>
-                  <p class="impact-card__author">
-                    Sara · Terminale Sciences Mathématiques
-                  </p>
-                </article>
-                <article class="impact-card impact-card--numbers">
-                  <ul class="impact-card__stats">
-                    <li>
-                      <span>88%</span>
-                      <small>des membres décrochent leur première option</small>
-                    </li>
-                    <li>
-                      <span>25</span>
-                      <small>partenaires académiques & associatifs</small>
-                    </li>
-                    <li>
-                      <span>12</span>
-                      <small>projets lauréats de concours nationaux</small>
-                    </li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="equipe">
-          <div class="container">
-            <div class="section-board section-board--lavender">
-              <div class="section__header">
-                <p class="section__eyebrow">Le crew</p>
-                <h2 class="section__title">
-                  Une team entre profs, élèves et alumni passionnés
-                </h2>
-              </div>
-              <div class="team-grid">
-                <article class="team-card team-card--photo">
-                  <h3>Khadija El Idrissi</h3>
-                  <p>Coordinatrice pédagogique · Professeure de philosophie</p>
-                  <p class="team-card__tag">Référente Parcoursup</p>
-                </article>
-                <article class="team-card team-card--photo">
-                  <h3>Youssef Amrani</h3>
-                  <p>Président du club · Terminale Sciences Physiques</p>
-                  <p class="team-card__tag">Mentorat scientifique</p>
-                </article>
-                <article class="team-card team-card--photo">
-                  <h3>Salma Boulahdour</h3>
-                  <p>Alumna · Étudiante en design UX à l'ENSAD</p>
-                  <p class="team-card__tag">Design de parcours</p>
-                </article>
-                <article class="team-card team-card--photo">
-                  <h3>Hamza Cherkaoui</h3>
-                  <p>Responsable partenariats externes</p>
-                  <p class="team-card__tag">Réseau international</p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="contact">
-          <div class="container">
-            <div class="section-board section-board--mint contact">
-              <div class="contact__intro">
-                <p class="section__eyebrow">Nous rejoindre</p>
-                <h2 class="section__title">Écris-nous une carte postale</h2>
+            <p class="section__lead">
+              Nous accueillons les lycéennes et lycéens qui cherchent un coup de
+              main pour comprendre les filières, préparer leurs dossiers et
+              trouver des opportunités au Maroc comme à l'international.
+            </p>
+            <ul class="mission-list">
+              <li>
+                <h2>Écouter</h2>
                 <p>
-                  Passe quand tu veux dans notre coin cosy (bâtiment B, 1er
-                  étage) ou laisse-nous un message. On répond vite avec un smile
-                  et des idées.
+                  Un rendez-vous convivial pour clarifier envies et questions.
                 </p>
-                <ul class="contact__details">
-                  <li>
-                    <span class="contact__label">Email</span>
-                    <a href="mailto:orientation@lm-youssef.ma"
-                      >orientation@lm-youssef.ma</a
-                    >
-                  </li>
-                  <li>
-                    <span class="contact__label">Instagram</span>
-                    <a
-                      href="https://instagram.com/orioclub"
-                      target="_blank"
-                      rel="noreferrer"
-                      >@orioclub</a
-                    >
-                  </li>
-                  <li>
-                    <span class="contact__label">Salle</span>
-                    Espace Club · Bâtiment B · 1er étage
-                  </li>
-                </ul>
-              </div>
-              <form
-                class="contact__form"
-                aria-label="Formulaire de contact du club"
-              >
-                <div class="form-field">
-                  <label for="prenom">Prénom</label>
-                  <input
-                    type="text"
-                    id="prenom"
-                    name="prenom"
-                    placeholder="Ton prénom"
-                    required
-                  />
-                </div>
-                <div class="form-field">
-                  <label for="classe">Classe</label>
-                  <input
-                    type="text"
-                    id="classe"
-                    name="classe"
-                    placeholder="1ère Bac, 2ème année..."
-                  />
-                </div>
-                <div class="form-field">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="prenom.nom@exemple.com"
-                    required
-                  />
-                </div>
-                <div class="form-field">
-                  <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    placeholder="Raconte-nous ton idée, ton rêve, ta question"
-                  ></textarea>
-                </div>
-                <button class="button button--primary" type="submit">
-                  Envoyer
-                </button>
-                <p class="form-footnote">
-                  On garde tes infos juste pour te répondre. Promis.
+              </li>
+              <li>
+                <h2>Orienter</h2>
+                <p>
+                  Des ressources actualisées et ciblées selon chaque projet.
                 </p>
-              </form>
+              </li>
+              <li>
+                <h2>Soutenir</h2>
+                <p>
+                  Mentorat entre pairs et accompagnement dans les démarches.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section section--members" id="membres">
+          <div class="container">
+            <div class="section__heading">
+              <p class="section__eyebrow">Le collectif</p>
+              <h2 class="section__title">Membres actifs & mentors</h2>
+              <p class="section__lead">
+                La liste se met à jour automatiquement depuis
+                <code>members.txt</code>.
+              </p>
+            </div>
+            <div class="members-list" id="members-list" aria-live="polite">
+              <p class="members-list__loading">Chargement des membres…</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--contact" id="contact">
+          <div class="container contact">
+            <div class="section__heading">
+              <p class="section__eyebrow">Contact</p>
+              <h2 class="section__title">On répond en moins de 48&nbsp;h</h2>
+            </div>
+            <div class="contact__content">
+              <p>
+                Écris-nous ou passe dans notre salle pour discuter de ton
+                projet. Nous sommes joignables toute la semaine scolaire.
+              </p>
+              <ul class="contact__details">
+                <li>
+                  <span class="contact__label">Email</span>
+                  <a href="mailto:orientation@lm-youssef.ma"
+                    >orientation@lm-youssef.ma</a
+                  >
+                </li>
+                <li>
+                  <span class="contact__label">Salle</span>
+                  Bâtiment B · 1er étage · Espace Club
+                </li>
+                <li>
+                  <span class="contact__label">Instagram</span>
+                  <a
+                    href="https://instagram.com/orioclub"
+                    target="_blank"
+                    rel="noreferrer"
+                    >@orioclub</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -522,21 +139,21 @@
       <footer class="site-footer">
         <div class="container site-footer__inner">
           <p class="site-footer__brand">
-            Club de l'orientation et opportunités scholaires · Lycée Moulay
+            Club de l'orientation et opportunités scholaires — Lycée Moulay
             Youssef
           </p>
-          <nav aria-label="Navigation secondaire">
-            <ul class="site-footer__links">
-              <li><a href="#mission">Mission</a></li>
-              <li><a href="#programmes">Programmes</a></li>
-              <li><a href="#opportunites">Opportunités</a></li>
-              <li><a href="#evenements">Événements</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </nav>
+          <button
+            class="animation-toggle"
+            type="button"
+            data-animation-toggle
+            aria-pressed="true"
+          >
+            <span class="animation-toggle__label" data-animation-status
+              >Animation activée</span
+            >
+          </button>
           <p class="site-footer__note">
-            © <span id="year">2025</span> · Créé avec 💛 par le club et ses
-            ami·e·s.
+            © <span data-year></span> · Tous droits réservés.
           </p>
         </div>
       </footer>
