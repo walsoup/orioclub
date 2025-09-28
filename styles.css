@@ -1,19 +1,19 @@
 :root {
-  color-scheme: dark;
-  --surface: #0b1020;
-  --surface-alt: #101932;
-  --surface-strong: rgba(15, 23, 42, 0.7);
-  --surface-card: rgba(12, 18, 32, 0.85);
-  --text-primary: #f8f9ff;
-  --text-muted: rgba(248, 249, 255, 0.68);
-  --accent: #f9a826;
-  --accent-secondary: #ff6b6b;
-  --accent-tertiary: #22d3ee;
-  --border-soft: rgba(255, 255, 255, 0.08);
-  --shadow-soft: 0 25px 70px rgba(7, 11, 26, 0.55);
-  --radius-large: 36px;
-  --radius-medium: 22px;
-  --radius-small: 14px;
+  color-scheme: light;
+  --surface: #f8f9fa;
+  --surface-alt: #ffffff;
+  --surface-strong: rgba(255, 255, 255, 0.9);
+  --surface-card: rgba(255, 255, 255, 0.7);
+  --text-primary: #2d3436;
+  --text-muted: rgba(45, 52, 54, 0.7);
+  --accent: #d57624;
+  --accent-secondary: #fd79a8;
+  --accent-tertiary: #0984e3;
+  --border-soft: rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.1);
+  --radius-large: 28px;
+  --radius-medium: 18px;
+  --radius-small: 12px;
 }
 
 * {
@@ -27,23 +27,48 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", "Work Sans", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  font-family:
+    "Inter",
+    "Work Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   color: var(--text-primary);
-  background: radial-gradient(circle at 15% 15%, #14203a, #060912 70%);
+  background: linear-gradient(
+    135deg,
+    #ffdabe,
+    #ffc0cb 30%,
+    #e6e6fa 60%,
+    #add8e6 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   min-height: 100vh;
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3CradialGradient id='g' cx='0' cy='0' r='1'%3E%3Cstop stop-color='%23ffffff' stop-opacity='0.4'/%3E%3Cstop offset='1' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle fill='url(%23g)' cx='2' cy='2' r='1.2'/%3E%3Ccircle fill='url(%23g)' cx='50' cy='32' r='0.9'/%3E%3Ccircle fill='url(%23g)' cx='28' cy='60' r='0.7'/%3E%3C/svg%3E")
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='15' cy='15' r='2' fill='%23ffffff' opacity='0.3'/%3E%3Ccircle cx='45' cy='25' r='1.5' fill='%23ffffff' opacity='0.2'/%3E%3Ccircle cx='25' cy='45' r='1' fill='%23ffffff' opacity='0.4'/%3E%3C/svg%3E")
     repeat;
-  opacity: 0.35;
+  opacity: 0.6;
   pointer-events: none;
-  mix-blend-mode: screen;
   z-index: -2;
 }
 
@@ -89,34 +114,34 @@ img {
 
 .ambient__gradient--one {
   background: radial-gradient(
-    circle at 15% 30%,
-    rgba(250, 182, 38, 0.45),
-    transparent 70%
+    circle at 20% 30%,
+    rgba(170, 180, 200, 0.3),
+    transparent 65%
   );
-  top: -24vw;
-  left: -12vw;
+  top: -20vw;
+  left: -10vw;
 }
 
 .ambient__gradient--two {
   background: radial-gradient(
     circle at 80% 20%,
-    rgba(255, 107, 107, 0.55),
-    transparent 75%
+    rgba(60, 140, 130, 0.4),
+    transparent 70%
   );
-  top: -18vw;
-  right: -18vw;
-  animation-delay: 5s;
+  top: -15vw;
+  right: -12vw;
+  animation-delay: 4s;
 }
 
 .ambient__gradient--three {
   background: radial-gradient(
-    circle at 45% 80%,
-    rgba(34, 211, 238, 0.4),
-    transparent 68%
+    circle at 40% 80%,
+    rgba(255, 192, 203, 0.35),
+    transparent 65%
   );
-  bottom: -26vw;
-  left: 15vw;
-  animation-delay: 9s;
+  bottom: -22vw;
+  left: 20vw;
+  animation-delay: 8s;
 }
 
 body:not(.is-animated) .ambient__gradient {
@@ -139,10 +164,10 @@ body:not(.is-animated) .ambient__gradient {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 28px 0;
-  background: linear-gradient(180deg, rgba(10, 16, 34, 0.95), rgba(10, 16, 34, 0.7));
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 24px 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .site-header__inner {
@@ -171,16 +196,16 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .site-header__eyebrow {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.38em;
-  color: rgba(255, 255, 255, 0.52);
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
 }
 
 .site-header__title {
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: 1.75rem;
-  letter-spacing: 0.06em;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.9rem;
+  transform: rotate(-1deg);
 }
 
 .site-header__nav {
@@ -233,10 +258,10 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .section__title {
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  letter-spacing: 0.04em;
-  line-height: 1.18;
+  font-family: "Shadows Into Light", cursive;
+  font-size: clamp(2.6rem, 4vw, 3.8rem);
+  line-height: 1.2;
+  transform: rotate(-0.5deg);
 }
 
 .section__lead {
@@ -270,9 +295,10 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .hero__title {
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: clamp(3.2rem, 6vw, 4.4rem);
-  line-height: 1.1;
+  font-family: "Shadows Into Light", cursive;
+  font-size: clamp(3.4rem, 6vw, 4.6rem);
+  line-height: 1.15;
+  transform: rotate(-0.8deg);
 }
 
 .hero__lead {
@@ -296,7 +322,10 @@ body:not(.is-animated) .ambient__gradient {
   border-radius: 999px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
 }
 
 .btn--solid {
@@ -330,9 +359,10 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .hero__metrics dt {
-  font-family: "Bodoni Moda", "Times New Roman", serif;
-  font-size: 2.4rem;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 2.6rem;
   color: var(--accent);
+  transform: rotate(-1deg);
 }
 
 .hero__metrics dd {
@@ -350,15 +380,17 @@ body:not(.is-animated) .ambient__gradient {
   position: relative;
   width: min(360px, 70vw);
   aspect-ratio: 3 / 4;
-  border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 213, 128, 0.9), rgba(16, 24, 45, 0.92));
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fff8dc, #ffeaa7 40%, #fab1a0 100%);
   overflow: hidden;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 3px solid #2d3436;
+  border-style: dashed;
   display: grid;
   place-items: center;
   padding: 24px;
   text-align: center;
+  transform: rotate(1deg);
 }
 
 .poster::before,
@@ -370,12 +402,20 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .poster::before {
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.3), transparent 55%);
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 255, 255, 0.3),
+    transparent 55%
+  );
   mix-blend-mode: screen;
 }
 
 .poster::after {
-  background: linear-gradient(160deg, transparent 55%, rgba(15, 23, 42, 0.65) 100%);
+  background: linear-gradient(
+    160deg,
+    transparent 55%,
+    rgba(15, 23, 42, 0.65) 100%
+  );
 }
 
 .poster__sun {
@@ -383,7 +423,11 @@ body:not(.is-animated) .ambient__gradient {
   top: 18%;
   width: 180px;
   aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(255, 233, 147, 0.88), rgba(255, 161, 69, 0.4));
+  background: radial-gradient(
+    circle,
+    rgba(255, 233, 147, 0.88),
+    rgba(255, 161, 69, 0.4)
+  );
   border-radius: 50%;
   filter: blur(2px);
 }
@@ -393,8 +437,22 @@ body:not(.is-animated) .ambient__gradient {
   bottom: 32%;
   width: 120%;
   height: 45%;
-  background: linear-gradient(180deg, rgba(8, 19, 38, 0.95), rgba(20, 33, 58, 0.95));
-  clip-path: polygon(0 60%, 18% 40%, 35% 70%, 52% 35%, 70% 65%, 85% 45%, 100% 70%, 100% 100%, 0 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 19, 38, 0.95),
+    rgba(20, 33, 58, 0.95)
+  );
+  clip-path: polygon(
+    0 60%,
+    18% 40%,
+    35% 70%,
+    52% 35%,
+    70% 65%,
+    85% 45%,
+    100% 70%,
+    100% 100%,
+    0 100%
+  );
 }
 
 .poster__birds {
@@ -439,20 +497,28 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .mission-card {
-  padding: 26px;
+  padding: 24px;
   border-radius: var(--radius-medium);
   background: var(--surface-card);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 2px solid var(--accent);
+  border-style: dashed;
   box-shadow: var(--shadow-soft);
   display: grid;
   gap: 12px;
+  transform: rotate(-0.5deg);
+  transition: transform 0.2s ease;
+}
+
+.mission-card:hover {
+  transform: rotate(0deg) scale(1.02);
 }
 
 .mission-card h2 {
   margin: 0;
-  font-family: "Bodoni Moda", serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.05em;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  transform: rotate(-1deg);
 }
 
 .mission-card p {
@@ -479,20 +545,31 @@ body:not(.is-animated) .ambient__gradient {
 .members-card {
   background: var(--surface-card);
   border-radius: var(--radius-medium);
-  padding: 26px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 22px 20px;
+  border: 2px solid var(--accent-secondary);
+  border-style: dashed;
   box-shadow: var(--shadow-soft);
   display: grid;
-  gap: 18px;
+  gap: 16px;
   position: relative;
   overflow: hidden;
+  transform: rotate(-0.3deg);
+  transition: transform 0.2s ease;
+}
+
+.members-card:hover {
+  transform: rotate(0deg) scale(1.02);
 }
 
 .members-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.08), transparent 60%);
+  background: radial-gradient(
+    circle at 0 0,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -513,8 +590,10 @@ body:not(.is-animated) .ambient__gradient {
 
 .members-card__name {
   margin: 0;
-  font-family: "Bodoni Moda", serif;
-  font-size: 1.35rem;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.4rem;
+  color: var(--accent-secondary);
+  transform: rotate(-1deg);
 }
 
 .members-card__role {
@@ -554,13 +633,15 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .contact__panel {
-  background: rgba(15, 24, 43, 0.85);
+  background: var(--surface-strong);
   border-radius: var(--radius-large);
-  padding: clamp(32px, 6vw, 48px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: clamp(28px, 6vw, 42px);
+  border: 2px solid var(--accent-tertiary);
+  border-style: dashed;
   box-shadow: var(--shadow-soft);
   display: grid;
-  gap: 22px;
+  gap: 20px;
+  transform: rotate(0.5deg);
 }
 
 .contact__intro {
@@ -591,13 +672,16 @@ body:not(.is-animated) .ambient__gradient {
 }
 
 .contact__card {
-  background: linear-gradient(180deg, rgba(255, 131, 60, 0.92), rgba(184, 55, 55, 0.92));
+  background: linear-gradient(135deg, #fd79a8, #fdcb6e);
   border-radius: var(--radius-large);
-  padding: clamp(28px, 6vw, 40px);
-  color: #170b11;
+  padding: clamp(24px, 6vw, 36px);
+  color: #2d3436;
   display: grid;
-  gap: 18px;
-  box-shadow: 0 35px 70px rgba(255, 107, 107, 0.45);
+  gap: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 3px solid #2d3436;
+  border-style: dashed;
+  transform: rotate(-1deg);
 }
 
 .contact__badge {
@@ -615,8 +699,9 @@ body:not(.is-animated) .ambient__gradient {
 
 .contact__card h3 {
   margin: 0;
-  font-family: "Bodoni Moda", serif;
-  font-size: 1.8rem;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.9rem;
+  transform: rotate(-1deg);
 }
 
 .contact__card p {
@@ -631,9 +716,9 @@ body:not(.is-animated) .ambient__gradient {
 
 .site-footer {
   margin-top: auto;
-  padding: 52px 0;
-  background: rgba(5, 8, 18, 0.92);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 48px 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid var(--border-soft);
 }
 
 .site-footer__inner {
@@ -645,27 +730,31 @@ body:not(.is-animated) .ambient__gradient {
 
 .site-footer__brand {
   margin: 0;
-  font-family: "Bodoni Moda", serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.12em;
+  font-family: "Shadows Into Light", cursive;
+  font-size: 1.5rem;
+  transform: rotate(-0.5deg);
 }
 
 .animation-toggle {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.08);
-  color: inherit;
-  padding: 10px 20px;
-  border-radius: 999px;
+  border: 2px dashed var(--accent);
+  background: var(--surface-strong);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+  transform: rotate(-1deg);
 }
 
 .animation-toggle:hover,
 .animation-toggle:focus-visible {
-  background: rgba(255, 255, 255, 0.14);
-  transform: translateY(-1px);
+  background: var(--accent-secondary);
+  color: white;
+  transform: rotate(0deg) translateY(-2px);
 }
 
 .animation-toggle[aria-pressed="false"] {
@@ -675,7 +764,7 @@ body:not(.is-animated) .ambient__gradient {
 .site-footer__note {
   margin: 0;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.52);
+  color: var(--text-muted);
 }
 
 @media (max-width: 780px) {
