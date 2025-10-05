@@ -317,6 +317,61 @@ async function loadContent() {
       aboutContent.textContent = content['about'];
     }
     
+    // Apply title font if specified
+    if (heroTitle && content['title-font']) {
+      const font = content['title-font'].trim();
+      if (font.toLowerCase() === 'lemon milk') {
+        // Load Lemon Milk from Google Fonts or fallback
+        const link = document.createElement('link');
+        link.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+        heroTitle.style.fontFamily = '"Quicksand", "Fredoka One", cursive';
+      } else if (font !== 'Fredoka One') {
+        heroTitle.style.fontFamily = `"${font}", cursive`;
+      }
+    }
+    
+    // Apply title outline setting
+    if (heroTitle && content['title-outline']) {
+      const outline = content['title-outline'].trim().toLowerCase();
+      if (outline === 'no' || outline === 'false') {
+        // Boring black text, no outline
+        heroTitle.style.color = '#2d3436';
+        heroTitle.style.webkitTextStroke = 'none';
+      } else {
+        // Cool amber outline (default)
+        heroTitle.style.color = '#fffbf0';
+        heroTitle.style.webkitTextStroke = '4px rgba(213, 118, 36, 0.6)';
+      }
+    }
+    
+    // Apply squiggle style
+    const squigglePath = document.getElementById('squiggle-path');
+    if (squigglePath && content['squiggle-style']) {
+      const style = content['squiggle-style'].trim().toLowerCase();
+      switch(style) {
+        case 'thick':
+          squigglePath.style.strokeWidth = '8';
+          break;
+        case 'dotted':
+          squigglePath.style.strokeWidth = '5';
+          squigglePath.style.strokeDasharray = '0 15';
+          squigglePath.style.strokeLinecap = 'round';
+          break;
+        case 'double':
+          squigglePath.style.strokeWidth = '3';
+          squigglePath.style.filter = 'drop-shadow(0 4px 0 var(--accent))';
+          break;
+        case 'wavy':
+          squigglePath.setAttribute('d', 'M2 14 Q 30 2, 60 14 T 120 14 T 180 14 T 240 14 T 300 14 T 360 14 T 420 14 T 480 14 T 540 14 T 598 14');
+          break;
+        default:
+          // Keep default style
+          squigglePath.style.strokeWidth = '5';
+      }
+    }
+    
     // Re-update squiggle after title changes
     updateSquiggle();
   } catch (e) {
