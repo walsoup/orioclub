@@ -12,8 +12,8 @@ about | I will touch taha .
 #   Format: FontName  OR  custom:FontName (no spaces after colon!)
 #   
 #   GOOGLE FONTS (auto-downloaded):
-#     Just type the font name: Pacifico, Great Vibes, Dancing Script, Righteous, Bebas Neue, etc.
-#     Example: title-font | Pacifico
+#     Just type the font name: Fredoka One, Pacifico, Great Vibes, Dancing Script, Righteous, Bebas Neue, etc.
+#     Example: title-font | Fredoka One
 #   
 #   CUSTOM FONTS (from assets/fonts/ folder):
 #     Use "custom:" prefix (no spaces!): custom:AlexiaBright, custom:MyCoolFont
@@ -40,3 +40,4 @@ title-outline | no
 #   wavy    = Smoother wave pattern
 #   none    = No squiggle (if you really want to remove it)
 squiggle-style | dotted
+
