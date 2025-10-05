@@ -320,15 +320,24 @@ async function loadContent() {
     // Apply title font if specified
     if (heroTitle && content['title-font']) {
       const font = content['title-font'].trim();
-      if (font.toLowerCase() === 'lemon milk') {
-        // Load Lemon Milk from Google Fonts or fallback
+      
+      // Don't reload if already using Fredoka One (default)
+      if (font !== 'Fredoka One') {
+        // Convert font name to Google Fonts URL format
+        // e.g., "Lemon Milk" -> "Lemon+Milk"
+        const fontUrl = font.replace(/\s+/g, '+');
+        
+        // Load from Google Fonts
         const link = document.createElement('link');
-        link.href = 'https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap';
+        link.href = `https://fonts.googleapis.com/css2?family=${fontUrl}:wght@400;700&display=swap`;
         link.rel = 'stylesheet';
         document.head.appendChild(link);
-        heroTitle.style.fontFamily = '"Quicksand", "Fredoka One", cursive';
-      } else if (font !== 'Fredoka One') {
-        heroTitle.style.fontFamily = `"${font}", cursive`;
+        
+        // Apply the font
+        heroTitle.style.fontFamily = `"${font}", "Fredoka One", cursive`;
+        
+        // Wait a bit for font to load, then update squiggle
+        setTimeout(() => updateSquiggle(), 200);
       }
     }
     
