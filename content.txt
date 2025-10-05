@@ -1,0 +1,7 @@
+# Format: Section | Content
+# Lines starting with # are comments and will be ignored
+# Available sections: hero-title, hero-subtitle, about
+
+hero-title | Club d'Orientation et opportunités scholaires
+hero-subtitle | kys
+about | I will touch taha .
