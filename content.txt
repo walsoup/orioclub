@@ -20,7 +20,7 @@ about | I will touch taha .
 #     Example: title-font | custom:AlexiaBright
 #     Font files must be in assets/fonts/ and loaded in styles.css
 #
-title-font | Lobster Two
+title-font | Pacifico
 
 # title-font-scope: Apply font to hero title only or ALL headers?
 #   hero-only = Just the big hero title (default)
@@ -29,8 +29,8 @@ title-font-scope | all-headers
 
 # title-outline: Toggle the amber outline effect
 #   yes = Cool cream text with amber outline (only on hero title)
-#   no  = Plain text with no outline (boring but clean)
-title-outline | yes
+#   no  = Plain text with no outline (boring ASF)
+title-outline | no
 
 # squiggle-style: Change the squiggle decoration style
 #   default = Classic smooth squiggle (recommended!)
