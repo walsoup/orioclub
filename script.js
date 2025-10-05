@@ -33,19 +33,37 @@ document.addEventListener("DOMContentLoaded", () => {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Squiggle dash length setup
+  // Squiggle dash length setup and width matching
   const squiggle = document.getElementById('squiggle-path');
-  if (squiggle) {
+  const heroTitle = document.querySelector('.hero__title');
+  const squiggleSvg = document.querySelector('.hero__squiggle');
+  
+  function updateSquiggle() {
+    if (!squiggle || !heroTitle || !squiggleSvg) return;
+    
     try {
+      // Match squiggle width to title width
+      const titleWidth = heroTitle.offsetWidth;
+      squiggleSvg.style.width = `${titleWidth}px`;
+      
+      // Update dash length after width change
       const len = Math.ceil(squiggle.getTotalLength());
       squiggle.style.setProperty('--squiggle-length', `${len}`);
-      // Optional: reset to ensure proper animation if reflowed
       squiggle.style.strokeDasharray = `${len}`;
       squiggle.style.strokeDashoffset = `${len}`;
     } catch (e) {
       // ignore if SVG not ready
     }
   }
+  
+  updateSquiggle();
+  
+  // Re-calculate on window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateSquiggle, 100);
+  }, { passive: true });
 
   // Fetch and display members
   async function loadMembers() {
@@ -267,6 +285,58 @@ document.addEventListener("DOMContentLoaded", () => {
   loadMembers();
   checkPoster();
   loadEvents();
+  loadContent();
   initScrollSpy();
   setInitialActiveFromHash();
 });
+
+// Load content from content.txt
+async function loadContent() {
+  try {
+    const response = await fetch('content.txt', { cache: 'no-cache' });
+    if (!response.ok) throw new Error('Content file not found');
+    
+    const text = await response.text();
+    const content = parseContent(text);
+    
+    // Update hero title
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle && content['hero-title']) {
+      heroTitle.textContent = content['hero-title'];
+    }
+    
+    // Update hero subtitle
+    const heroSubtitle = document.getElementById('hero-subtitle');
+    if (heroSubtitle && content['hero-subtitle']) {
+      heroSubtitle.textContent = content['hero-subtitle'];
+    }
+    
+    // Update about content
+    const aboutContent = document.getElementById('about-content');
+    if (aboutContent && content['about']) {
+      aboutContent.textContent = content['about'];
+    }
+    
+    // Re-update squiggle after title changes
+    updateSquiggle();
+  } catch (e) {
+    console.error('Failed to load content:', e);
+    // Use fallback content from HTML if file not found
+  }
+}
+
+function parseContent(text) {
+  const content = {};
+  text.split('\n')
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('#'))
+    .forEach(line => {
+      const [key, value] = line.split('|').map(s => s.trim());
+      if (key && value) {
+        content[key] = value;
+      }
+    });
+  return content;
+}
+
+
