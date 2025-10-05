@@ -338,37 +338,61 @@ async function loadContent() {
       if (outline === 'no' || outline === 'false') {
         // Boring black text, no outline
         heroTitle.style.color = '#2d3436';
-        heroTitle.style.webkitTextStroke = 'none';
+        heroTitle.style.webkitTextStroke = '0';
+        heroTitle.style.paintOrder = 'normal';
       } else {
         // Cool amber outline (default)
         heroTitle.style.color = '#fffbf0';
         heroTitle.style.webkitTextStroke = '4px rgba(213, 118, 36, 0.6)';
+        heroTitle.style.paintOrder = 'stroke fill';
       }
     }
     
     // Apply squiggle style
     const squigglePath = document.getElementById('squiggle-path');
+    const squiggleSvg = document.querySelector('.hero__squiggle');
     if (squigglePath && content['squiggle-style']) {
       const style = content['squiggle-style'].trim().toLowerCase();
+      
+      // Show squiggle by default
+      if (squiggleSvg) squiggleSvg.style.display = 'block';
+      
       switch(style) {
+        case 'none':
+          // Hide the squiggle completely
+          if (squiggleSvg) squiggleSvg.style.display = 'none';
+          break;
         case 'thick':
           squigglePath.style.strokeWidth = '8';
+          squigglePath.style.strokeDasharray = '';
+          squigglePath.style.filter = '';
+          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
           break;
         case 'dotted':
           squigglePath.style.strokeWidth = '5';
           squigglePath.style.strokeDasharray = '0 15';
           squigglePath.style.strokeLinecap = 'round';
+          squigglePath.style.filter = '';
+          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
           break;
         case 'double':
           squigglePath.style.strokeWidth = '3';
+          squigglePath.style.strokeDasharray = '';
           squigglePath.style.filter = 'drop-shadow(0 4px 0 var(--accent))';
+          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
           break;
         case 'wavy':
+          squigglePath.style.strokeWidth = '5';
+          squigglePath.style.strokeDasharray = '';
+          squigglePath.style.filter = '';
           squigglePath.setAttribute('d', 'M2 14 Q 30 2, 60 14 T 120 14 T 180 14 T 240 14 T 300 14 T 360 14 T 420 14 T 480 14 T 540 14 T 598 14');
           break;
         default:
           // Keep default style
           squigglePath.style.strokeWidth = '5';
+          squigglePath.style.strokeDasharray = '';
+          squigglePath.style.filter = '';
+          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
       }
     }
     
