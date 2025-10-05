@@ -1,5 +1,30 @@
 /* styles.css */
 
+/* Custom Fonts */
+/* Add as many custom fonts as you want using this pattern: */
+
+@font-face {
+  font-family: 'AlexiaBright';
+  src: url('assets/fonts/AlexiaBright.woff2') format('woff2'),
+       url('assets/fonts/AlexiaBright.woff') format('woff'),
+       url('assets/fonts/AlexiaBright.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Example: Add another custom font
+@font-face {
+  font-family: 'YourFontName';
+  src: url('assets/fonts/YourFontName.woff2') format('woff2'),
+       url('assets/fonts/YourFontName.woff') format('woff'),
+       url('assets/fonts/YourFontName.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
 :root {
   --text-primary: #2d3436;
   --text-muted: rgba(45, 52, 54, 0.7);

@@ -224,10 +224,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector('.site-header__nav');
     if (!nav) return;
     if (nav.querySelector('a[href="#events"]')) return; // already exists
+    
     const a = document.createElement('a');
     a.href = '#events';
     a.textContent = 'Événements';
-    nav.appendChild(a);
+    
+    // Insert before "À propos" link (first child)
+    const aboutLink = nav.querySelector('a[href="#about"]');
+    if (aboutLink) {
+      nav.insertBefore(a, aboutLink);
+    } else {
+      // Fallback: append at the end if "À propos" not found
+      nav.appendChild(a);
+    }
   }
 
   // Scrollspy for nav active link (init & reinit)
@@ -319,22 +328,50 @@ async function loadContent() {
     
     // Apply title font if specified
     if (heroTitle && content['title-font']) {
-      const font = content['title-font'].trim();
+      const fontValue = content['title-font'].trim();
       
       // Don't reload if already using Fredoka One (default)
-      if (font !== 'Fredoka One') {
-        // Convert font name to Google Fonts URL format
-        // e.g., "Lemon Milk" -> "Lemon+Milk"
-        const fontUrl = font.replace(/\s+/g, '+');
+      if (fontValue !== 'Fredoka One') {
+        let fontFamily = '';
         
-        // Load from Google Fonts
-        const link = document.createElement('link');
-        link.href = `https://fonts.googleapis.com/css2?family=${fontUrl}:wght@400;700&display=swap`;
-        link.rel = 'stylesheet';
-        document.head.appendChild(link);
+        // Check if it's a custom font (prefix: "custom:")
+        if (fontValue.startsWith('custom:')) {
+          // Custom font - extract name and apply (already loaded via CSS @font-face)
+          const font = fontValue.substring(7).trim(); // Remove 'custom:' prefix
+          fontFamily = `"${font}", "Fredoka One", cursive`;
+        } else {
+          // Google Font - load dynamically
+          const font = fontValue;
+          const fontUrl = font.replace(/\s+/g, '+');
+          
+          // Load from Google Fonts with error handling
+          const link = document.createElement('link');
+          link.href = `https://fonts.googleapis.com/css2?family=${fontUrl}:wght@400;700&display=swap`;
+          link.rel = 'stylesheet';
+          
+          // Fallback to default if font doesn't load
+          link.onerror = () => {
+            console.warn(`Font "${font}" not found on Google Fonts, using Fredoka One instead`);
+            heroTitle.style.fontFamily = '"Fredoka One", cursive';
+          };
+          
+          document.head.appendChild(link);
+          
+          fontFamily = `"${font}", "Fredoka One", cursive`;
+        }
         
-        // Apply the font
-        heroTitle.style.fontFamily = `"${font}", "Fredoka One", cursive`;
+        // Apply font to hero title
+        heroTitle.style.fontFamily = fontFamily;
+        
+        // Check if font should apply to all headers
+        const scope = content['title-font-scope']?.trim().toLowerCase();
+        if (scope === 'all-headers') {
+          // Apply to all section titles
+          const sectionTitles = document.querySelectorAll('.section__title, h2, h3');
+          sectionTitles.forEach(title => {
+            title.style.fontFamily = fontFamily;
+          });
+        }
         
         // Wait a bit for font to load, then update squiggle
         setTimeout(() => updateSquiggle(), 200);

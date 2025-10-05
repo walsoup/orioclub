@@ -1,0 +1,64 @@
+# FONT EXAMPLES - Copy one of these to content.txt
+
+# ═══════════════════════════════════════════════════
+# FONT SCOPE - Where should the font apply?
+# ═══════════════════════════════════════════════════
+
+# Apply font to hero title only (default):
+title-font-scope | hero-only
+
+# Apply font to ALL headers (hero title + section titles like "Notre Mission", "Membres", etc.):
+title-font-scope | all-headers
+
+
+# ═══════════════════════════════════════════════════
+# GOOGLE FONTS (No files needed, auto-downloads)
+# ═══════════════════════════════════════════════════
+
+# Elegant Script Fonts:
+title-font | Pacifico
+title-font | Great Vibes
+title-font | Dancing Script
+title-font | Satisfy
+title-font | Caveat
+
+# Bold Display Fonts:
+title-font | Fredoka One
+title-font | Righteous
+title-font | Bebas Neue
+title-font | Alfa Slab One
+
+# Clean Modern Fonts:
+title-font | Poppins
+title-font | Quicksand
+title-font | Montserrat
+
+
+# ═══════════════════════════════════════════════════
+# CUSTOM FONTS (Requires font files in assets/fonts/)
+# ═══════════════════════════════════════════════════
+
+# Use "custom:" prefix for fonts loaded via @font-face in styles.css
+# Important: NO SPACES after the colon! Use camelCase or PascalCase.
+title-font | custom:AlexiaBright
+title-font | custom:YourCustomFont
+
+
+# ═══════════════════════════════════════════════════
+# HOW TO ADD A NEW CUSTOM FONT
+# ═══════════════════════════════════════════════════
+
+# 1. Get font files (.woff2, .woff, .ttf)
+# 2. Place in assets/fonts/YourFont.woff2
+# 3. Add @font-face to styles.css (use no-space name):
+#
+#    @font-face {
+#      font-family: 'YourFontName';
+#      src: url('assets/fonts/YourFont.woff2') format('woff2');
+#      font-weight: 400;
+#      font-style: normal;
+#      font-display: swap;
+#    }
+#
+# 4. Use in content.txt (match the font-family name exactly):
+#    title-font | custom:YourFontName
