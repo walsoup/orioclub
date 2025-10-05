@@ -1,3 +1,3 @@
-# Orioclub – Club de l'orientation et opportunités scholaires
+# Orioclub
 
 bread taste better than key
