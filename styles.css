@@ -178,6 +178,7 @@ body.reduce-motion .hero__cta::before { display: none; }
 body.reduce-motion .hero::before { animation: none; opacity: 0.6; }
 body.reduce-motion .hero::after { animation: none; }
 body.reduce-motion .hero__title::before { animation: none; }
+body.reduce-motion .hero__doodles { display: none; }
 body.reduce-motion .hero__poster::after { display: none; }
 body.reduce-motion .members-card::before { display: none; }
 body.reduce-motion .event-card::after { display: none; }
@@ -252,140 +253,184 @@ main.container {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: center;
-  gap: clamp(1.75rem, 3.5vw, 2.85rem);
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
   position: relative;
+  min-height: 500px;
 }
 
-/* Add decorative elements behind hero */
+/* Organic blob background elements */
 .hero::before {
   content: "";
   position: absolute;
-  top: -20%;
-  left: -10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(213, 118, 36, 0.15), transparent 70%);
-  border-radius: 50%;
-  filter: blur(60px);
+  top: -15%;
+  left: -8%;
+  width: clamp(250px, 35vw, 400px);
+  height: clamp(250px, 35vw, 400px);
+  background: radial-gradient(circle at 30% 40%, rgba(255, 200, 150, 0.25), rgba(213, 118, 36, 0.12) 50%, transparent 75%);
+  border-radius: 47% 53% 61% 39% / 43% 67% 33% 57%;
+  filter: blur(45px);
   z-index: -1;
-  animation: heroGlow 8s ease-in-out infinite;
+  animation: organicFloat 20s ease-in-out infinite;
 }
 
-/* Add floating shapes for personality */
 .hero::after {
   content: "";
   position: absolute;
-  bottom: -5%;
+  bottom: 10%;
   right: -5%;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(150, 200, 255, 0.2), transparent 70%);
-  border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
-  filter: blur(40px);
+  width: clamp(180px, 25vw, 320px);
+  height: clamp(180px, 25vw, 320px);
+  background: radial-gradient(ellipse at 70% 30%, rgba(150, 200, 255, 0.22), rgba(100, 150, 255, 0.08) 60%, transparent 80%);
+  border-radius: 71% 29% 48% 52% / 64% 35% 65% 36%;
+  filter: blur(35px);
   z-index: -1;
-  animation: blobPulse 10s ease-in-out infinite;
+  animation: organicFloat 25s ease-in-out infinite reverse;
 }
 
-@keyframes blobPulse {
+@keyframes organicFloat {
   0%, 100% { 
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    border-radius: 47% 53% 61% 39% / 43% 67% 33% 57%;
   }
-  33% { 
-    transform: translate(-10px, 10px) scale(1.1) rotate(120deg);
-    border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%;
-  }
-  66% { 
-    transform: translate(10px, -10px) scale(0.9) rotate(240deg);
-    border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
-  }
-}
-
-@keyframes heroGlow {
-  0%, 100% { 
-    opacity: 0.6;
-    transform: scale(1);
+  25% { 
+    transform: translate(15px, -20px) rotate(5deg) scale(1.05);
+    border-radius: 53% 47% 39% 61% / 57% 43% 57% 43%;
   }
   50% { 
-    opacity: 1;
-    transform: scale(1.2);
+    transform: translate(-10px, -10px) rotate(-3deg) scale(0.98);
+    border-radius: 61% 39% 47% 53% / 67% 33% 67% 33%;
+  }
+  75% { 
+    transform: translate(-20px, 15px) rotate(4deg) scale(1.03);
+    border-radius: 39% 61% 53% 47% / 33% 67% 33% 67%;
   }
 }
 
 .hero__copy {
-  display: grid;
-  grid-auto-rows: max-content;
-  gap: clamp(1.35rem, 2.5vw, 2.25rem);
-  align-self: center;
+  flex: 1 1 min(100%, 480px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
+  z-index: 2;
+  padding-top: clamp(1rem, 2vw, 1.5rem);
 }
+
 .hero__title {
   font-family: "Fredoka One", cursive;
-  font-size: clamp(3.3rem, 5vw, 4.6rem);
+  font-size: clamp(2.8rem, 5.5vw, 4.8rem);
   font-weight: 400;
-  line-height: 0.94;
-  color: #fffbf0;
-  letter-spacing: -0.035em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-  animation: titleFadeIn 1s ease-out;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
   position: relative;
   display: inline-block;
-  
-  /* Amber outline effect - THICC version */
-  -webkit-text-stroke: 4px rgba(213, 118, 36, 0.6);
-  paint-order: stroke fill;
+  max-width: 14ch;
+  animation: titleSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  transform-origin: left center;
 }
 
-/* Add playful accent marks */
-.hero__title::before {
-  content: "✦";
+/* Hand-drawn style underline accent */
+.hero__title::after {
+  content: "";
   position: absolute;
-  top: -0.3em;
-  right: -0.5em;
-  font-size: 0.4em;
+  bottom: -0.15em;
+  left: 0;
+  width: 100%;
+  height: 0.12em;
+  background: linear-gradient(90deg, 
+    var(--accent) 0%, 
+    var(--accent) 70%, 
+    transparent 100%);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineDraw 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  opacity: 0.5;
+}
+
+/* Doodle-style decorative elements */
+.hero__title::before {
+  content: "★";
+  position: absolute;
+  top: -0.4em;
+  left: -0.6em;
+  font-size: 0.35em;
   color: var(--accent);
-  animation: sparkle 3s ease-in-out infinite;
-  opacity: 0.7;
-  -webkit-text-stroke: 0;
+  animation: doodleBounce 2.5s ease-in-out 0.8s infinite;
+  transform-origin: center;
+  opacity: 0;
+  animation-fill-mode: both;
+  filter: drop-shadow(0 2px 4px rgba(213, 118, 36, 0.3));
 }
 
-@keyframes sparkle {
-  0%, 100% { 
-    opacity: 0.7;
-    transform: scale(1) rotate(0deg);
-  }
-  50% { 
-    opacity: 1;
-    transform: scale(1.2) rotate(180deg);
-  }
-}
-
-@keyframes titleFadeIn {
+@keyframes titleSlideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-30px) rotate(-2deg);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes underlineDraw {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes doodleBounce {
+  0%, 100% { 
+    opacity: 0.7;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  15% { 
+    opacity: 1;
+    transform: translateY(-8px) rotate(12deg) scale(1.15);
+  }
+  30% { 
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+  45% { 
+    transform: translateY(-4px) rotate(5deg) scale(1.08);
+  }
+  60% { 
+    transform: translateY(0) rotate(0deg) scale(1);
   }
 }
 
 .hero__lead {
-  font-size: clamp(1.15rem, 1.75vw, 1.35rem);
-  color: rgba(45, 52, 54, 0.85);
-  max-width: min(36ch, 30rem);
-  animation: fadeInUp 1s ease-out 0.3s both;
+  font-size: clamp(1.1rem, 1.85vw, 1.4rem);
+  color: rgba(45, 52, 54, 0.8);
+  max-width: 42ch;
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.65;
+  position: relative;
+  padding-left: 1.2rem;
+  animation: leadSlideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
 }
 
-@keyframes fadeInUp {
+/* Hand-drawn quote mark */
+.hero__lead::before {
+  content: """;
+  position: absolute;
+  left: -0.1rem;
+  top: -0.3em;
+  font-size: 2.5em;
+  font-family: Georgia, serif;
+  color: var(--accent);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+@keyframes leadSlideIn {
   from {
     opacity: 0;
     transform: translateY(15px);
@@ -396,99 +441,232 @@ main.container {
   }
 }
 .hero__cta {
-  justify-self: flex-start;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  padding-inline: clamp(1.5rem, 3vw, 1.85rem);
+  gap: 0.75rem;
+  padding-inline: clamp(1.65rem, 3.2vw, 2rem);
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  animation: fadeInUp 1s ease-out 0.5s both;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  font-weight: 600;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  animation: ctaPopIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.4s both;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.hero__cta::before {
+/* Sketch-style shadow effect */
+.hero__cta::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(213, 118, 36, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  inset: -2px;
+  border-radius: inherit;
+  background: var(--accent);
+  opacity: 0.15;
+  z-index: -1;
+  transform: translate(4px, 4px);
+  transition: all 0.3s ease;
 }
 
-.hero__cta:hover::before {
-  width: 300px;
-  height: 300px;
+.hero__cta:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.hero__cta:hover::after {
+  transform: translate(6px, 6px);
+  opacity: 0.25;
+}
+
+.hero__cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.hero__cta:active::after {
+  transform: translate(2px, 2px);
 }
 
 .hero__cta .chev {
   width: 1.25rem;
   height: auto;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
 .hero__cta:hover .chev,
 .hero__cta:focus-visible .chev {
-  transform: translateX(0.35rem);
+  transform: translateX(0.4rem) scale(1.1);
+}
+
+@keyframes ctaPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-3deg);
+  }
+  60% {
+    transform: scale(1.08) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 .hero__poster {
+  flex: 0 1 clamp(280px, 40vw, 420px);
   position: relative;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
-  border-radius: clamp(1.35rem, 3vw, 1.85rem);
-  padding: clamp(1.5rem, 3.5vw, 2.1rem);
-  box-shadow: 0 24px 54px -28px rgba(15, 18, 60, 0.52);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+  border-radius: clamp(1.5rem, 3.5vw, 2.2rem);
+  padding: clamp(1.8rem, 4vw, 2.5rem);
+  box-shadow: 
+    0 4px 24px rgba(213, 118, 36, 0.08),
+    0 12px 48px -12px rgba(15, 18, 60, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   overflow: hidden;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
   aspect-ratio: 3 / 4;
   display: grid;
   place-items: center;
-  animation: posterFloat 1s ease-out 0.2s both;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: posterWiggleIn 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  align-self: flex-start;
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 
-/* Add decorative corner accent */
-.hero__poster::after {
-  content: "";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, rgba(213, 118, 36, 0.3), transparent);
-  border-radius: 50%;
-  filter: blur(10px);
-  pointer-events: none;
-}
-
-@keyframes posterFloat {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.hero__poster:hover {
-  transform: translateY(-8px) rotate(1deg);
-  box-shadow: 0 32px 64px -28px rgba(15, 18, 60, 0.6);
-}
+/* Sketchy corner accent - hand-drawn feel */
 .hero__poster::before {
   content: "";
   position: absolute;
-  inset: clamp(0.35rem, 1vw, 0.55rem);
-  border-radius: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.24);
+  top: -2px;
+  right: -2px;
+  width: 80px;
+  height: 80px;
+  background: 
+    linear-gradient(135deg, transparent 0%, transparent 48%, var(--accent) 48%, var(--accent) 52%, transparent 52%),
+    linear-gradient(45deg, transparent 0%, transparent 48%, var(--accent) 48%, var(--accent) 52%, transparent 52%);
+  opacity: 0.18;
   pointer-events: none;
+  border-radius: 0 clamp(1.5rem, 3.5vw, 2.2rem) 0 0;
 }
+
+/* Organic floating glow */
+.hero__poster::after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  right: -10%;
+  width: 60%;
+  height: 40%;
+  background: radial-gradient(ellipse, rgba(213, 118, 36, 0.25), transparent 65%);
+  border-radius: 50%;
+  filter: blur(25px);
+  pointer-events: none;
+  animation: posterGlow 4s ease-in-out infinite alternate;
+}
+
+.hero__poster:hover {
+  transform: translateY(-6px) rotate(1deg) scale(1.02);
+  box-shadow: 
+    0 8px 32px rgba(213, 118, 36, 0.15),
+    0 18px 64px -12px rgba(15, 18, 60, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@keyframes posterWiggleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotate(-8deg) scale(0.9);
+  }
+  50% {
+    transform: translateY(-5px) rotate(4deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes posterGlow {
+  0% {
+    opacity: 0.3;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: translate(-10%, 5%) scale(1.15);
+  }
+}
+
+/* Hand-drawn doodle decorations */
+.hero__doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.doodle {
+  position: absolute;
+  color: var(--accent);
+  opacity: 0;
+  animation: doodleFadeIn 0.8s ease-out forwards;
+}
+
+.doodle--circle {
+  width: clamp(60px, 8vw, 100px);
+  height: clamp(60px, 8vw, 100px);
+  top: 8%;
+  right: 12%;
+  animation: doodleFadeIn 0.8s ease-out 0.9s forwards, doodleSpin 20s linear 2s infinite;
+  transform-origin: center;
+}
+
+.doodle--arrow {
+  width: clamp(45px, 6vw, 70px);
+  height: clamp(45px, 6vw, 70px);
+  bottom: 25%;
+  left: 8%;
+  animation: doodleFadeIn 0.8s ease-out 1.1s forwards, doodleFloat 6s ease-in-out 2s infinite;
+}
+
+.doodle--star {
+  width: clamp(35px, 5vw, 55px);
+  height: clamp(35px, 5vw, 55px);
+  top: 45%;
+  right: 5%;
+  animation: doodleFadeIn 0.8s ease-out 1.3s forwards, doodleTwinkle 3s ease-in-out 2s infinite;
+}
+
+@keyframes doodleFadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes doodleSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes doodleFloat {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg);
+  }
+  50% { 
+    transform: translateY(-12px) rotate(5deg);
+  }
+}
+
+@keyframes doodleTwinkle {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+
 .hero__poster img {
   display: block;
   width: 100%;
@@ -512,45 +690,53 @@ main.container {
   letter-spacing: 0.04em;
 }
 
-/* Squiggle Path Animation */
+/* Squiggle - keeping it but making it more subtle and hand-drawn */
+.hero__squiggle { 
+  margin: -8px 0 4px;
+  width: 100%;
+  max-width: 100%;
+  opacity: 0;
+  animation: squiggleFadeIn 0.5s ease-out 0.5s forwards;
+}
+
 #squiggle-path {
   stroke: var(--accent);
-  stroke-width: 5;
+  stroke-width: 3;
   stroke-linecap: round;
   fill: none;
   stroke-dasharray: var(--squiggle-length);
   stroke-dashoffset: var(--squiggle-length);
-  animation: squiggleDraw 1.5s ease-out 0.5s forwards, squiggleWiggle 3s ease-in-out 2s infinite;
+  animation: squiggleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.6s forwards, squiggleBreathe 4s ease-in-out 2s infinite;
+  filter: drop-shadow(0 1px 2px rgba(213, 118, 36, 0.2));
+  opacity: 0.4;
 }
-.hero__squiggle { 
-  margin: -6px 0 6px;
-  width: 100%;
-  max-width: 100%;
+
+@keyframes squiggleFadeIn {
+  to { opacity: 1; }
 }
+
 @keyframes squiggleDraw { 
   to { stroke-dashoffset: 0; } 
 }
-@keyframes squiggleWiggle {
+
+@keyframes squiggleBreathe {
   0%, 100% { 
-    stroke-dashoffset: 0;
-    transform: translateX(0);
-  }
-  25% { 
-    stroke-dashoffset: -20;
-    transform: translateX(2px);
+    opacity: 0.4;
+    stroke-width: 3;
   }
   50% { 
-    stroke-dashoffset: 0;
-    transform: translateX(-2px);
-  }
-  75% { 
-    stroke-dashoffset: 20;
-    transform: translateX(2px);
+    opacity: 0.6;
+    stroke-width: 3.5;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #squiggle-path { animation: squiggleDraw 1.5s ease-out 0.5s forwards; }
+  #squiggle-path { 
+    animation: squiggleDraw 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.6s forwards;
+  }
+  .hero__squiggle {
+    animation: squiggleFadeIn 0.5s ease-out 0.5s forwards;
+  }
 }
 
 /* --- Header nav links with subtle glow --- */
@@ -968,6 +1154,17 @@ main.container {
   animation: fadeInUp 1s ease-out 1s both;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Mobile and tablet responsive styles */
 @media (max-width: 768px) {
   .site-header__inner {
@@ -986,53 +1183,45 @@ main.container {
   }
   
   .hero {
-    grid-template-columns: 1fr;
-    text-align: left;
+    flex-direction: column;
     gap: 2.5rem;
+    align-items: stretch;
   }
   
   .hero::before {
-    top: -10%;
+    top: -8%;
     left: 50%;
     transform: translateX(-50%);
+    width: 250px;
+    height: 250px;
   }
   
   .hero::after {
-    bottom: -10%;
+    bottom: -8%;
     right: 50%;
     transform: translateX(50%);
+    width: 180px;
+    height: 180px;
   }
   
   .hero__copy {
     order: 1;
-    justify-items: flex-start;
-    gap: 1.5rem;
     max-width: none;
   }
   
   .hero__title {
-    text-align: left;
-    margin-inline: 0;
-  }
-  
-  .hero__squiggle {
-    justify-self: flex-start;
+    max-width: none;
   }
   
   .hero__lead {
-    text-align: left;
-    justify-self: flex-start;
-  }
-  
-  .hero__cta {
-    justify-self: flex-start;
+    max-width: none;
   }
   
   .hero__poster {
     order: 2;
-    justify-self: center;
-    margin-inline: auto;
-    max-width: 360px;
+    flex: 0 1 auto;
+    max-width: 400px;
+    margin: 0 auto;
     width: 100%;
   }
 }
