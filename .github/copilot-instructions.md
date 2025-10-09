@@ -10,7 +10,7 @@ Orioclub is a French-language static website for an orientation and academic opp
 - **No build tools**: Direct file serving (static site)
 - **No framework**: Pure JavaScript with DOM manipulation
 - **Styling**: Custom CSS with CSS custom properties (variables)
-- **Fonts**: Google Fonts (Poppins, Pacifico) and custom fonts via @font-face
+- **Fonts**: Google Fonts (Poppins, Fredoka One, and dynamically loaded fonts based on content.txt) and custom fonts via @font-face
 
 ## File Structure
 
@@ -20,7 +20,7 @@ Orioclub is a French-language static website for an orientation and academic opp
 - `script.js` - All JavaScript functionality
 
 ### Configuration Files (Plain Text Format)
-- `content.txt` - Site content and customization settings (hero title, subtitle, about text, font preferences, outline styles, squiggle styles)
+- `content.txt` - Site content and customization settings (hero title, subtitle, about text, font preferences including font family and scope, outline styles, squiggle styles)
 - `members.txt` - Club member information (Format: `Name | Role | Description | Image`)
 - `events.txt` - Upcoming events (Format: `Title | Date (YYYY-MM-DD) | Location | Description | Image`)
 
