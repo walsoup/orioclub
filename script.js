@@ -17,7 +17,7 @@ function updateSquiggle() {
     squiggle.style.strokeDasharray = `${len}`;
     squiggle.style.strokeDashoffset = `${len}`;
   } catch (e) {
-    // ignore if SVG not ready
+    // Silently handle SVG measurement errors during initialization
   }
 }
 
