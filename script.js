@@ -1,3 +1,26 @@
+// Squiggle update function - needs to be global for loadContent()
+function updateSquiggle() {
+  const squiggle = document.getElementById('squiggle-path');
+  const heroTitle = document.querySelector('.hero__title');
+  const squiggleSvg = document.querySelector('.hero__squiggle');
+  
+  if (!squiggle || !heroTitle || !squiggleSvg) return;
+  
+  try {
+    // Match squiggle width to title width
+    const titleWidth = heroTitle.offsetWidth;
+    squiggleSvg.style.width = `${titleWidth}px`;
+    
+    // Update dash length after width change
+    const len = Math.ceil(squiggle.getTotalLength());
+    squiggle.style.setProperty('--squiggle-length', `${len}`);
+    squiggle.style.strokeDasharray = `${len}`;
+    squiggle.style.strokeDashoffset = `${len}`;
+  } catch (e) {
+    // ignore if SVG not ready
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const membersList = document.getElementById("members-list");
   const yearSpan = document.querySelector("[data-year]");
@@ -33,29 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Squiggle dash length setup and width matching
-  const squiggle = document.getElementById('squiggle-path');
-  const heroTitle = document.querySelector('.hero__title');
-  const squiggleSvg = document.querySelector('.hero__squiggle');
-  
-  function updateSquiggle() {
-    if (!squiggle || !heroTitle || !squiggleSvg) return;
-    
-    try {
-      // Match squiggle width to title width
-      const titleWidth = heroTitle.offsetWidth;
-      squiggleSvg.style.width = `${titleWidth}px`;
-      
-      // Update dash length after width change
-      const len = Math.ceil(squiggle.getTotalLength());
-      squiggle.style.setProperty('--squiggle-length', `${len}`);
-      squiggle.style.strokeDasharray = `${len}`;
-      squiggle.style.strokeDashoffset = `${len}`;
-    } catch (e) {
-      // ignore if SVG not ready
-    }
-  }
-  
+  // Initialize squiggle
   updateSquiggle();
   
   // Re-calculate on window resize
