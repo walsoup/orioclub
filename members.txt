@@ -1,9 +1,8 @@
 # Format : Nom | Rôle | Description | Image (optionnel)
 # L'image peut être un chemin relatif vers /assets ou une URL complète.
 # Exemple : Fatima Zahra | Responsable admission | Pilote les ateliers Parcoursup. | assets/fatima.jpg
-Meriam | admin | idk what she does. | assets/water.jpg
-Zeki | emotional support | a77777 | assets/water.jpg
-Taha | bogos | totr | assets/water.jpg
-walsoup | nicest person (not meriam) | water water water | assets/water.jpg
-dbibina | dryf | dryf bzaf | assets/water.jpg
-Sabri | shaytan | shaytan | assets/water.jpg
+Meriam | Club President | Sdiybt | assets/water.jpg
+Walid | Vice President | DSdiybt 
+Taha | Secretary general | Maman
+Youssef | Accountant | Youssef(x)
+Afrass | Consultant-at-Large | "Youssef(x)"
