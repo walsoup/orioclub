@@ -201,6 +201,33 @@ body.reduce-motion .btn {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Subtle paper texture overlay for handcrafted feel */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg, 
+      transparent, 
+      transparent 2px, 
+      rgba(0, 0, 0, 0.008) 2px, 
+      rgba(0, 0, 0, 0.008) 4px
+    ),
+    repeating-linear-gradient(
+      90deg, 
+      transparent, 
+      transparent 2px, 
+      rgba(0, 0, 0, 0.008) 2px, 
+      rgba(0, 0, 0, 0.008) 4px
+    );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
 }
 
 .site-header {
@@ -333,6 +360,9 @@ main.container {
   max-width: 14ch;
   animation: titleSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   transform-origin: left center;
+  text-shadow: 
+    0 1px 1px rgba(0, 0, 0, 0.03),
+    0 2px 4px rgba(213, 118, 36, 0.08);
 }
 
 /* Hand-drawn style underline accent */
@@ -352,6 +382,7 @@ main.container {
   transform-origin: left;
   animation: underlineDraw 0.7s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
   opacity: 0.5;
+  box-shadow: 0 1px 2px rgba(213, 118, 36, 0.2);
 }
 
 /* Doodle-style decorative elements */
@@ -415,6 +446,7 @@ main.container {
   position: relative;
   padding-left: 1.2rem;
   animation: leadSlideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+  font-style: italic;
 }
 
 /* Hand-drawn quote mark */
@@ -570,6 +602,15 @@ main.container {
     0 8px 32px rgba(213, 118, 36, 0.15),
     0 18px 64px -12px rgba(15, 18, 60, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Tilt effect on mouse move for extra personality */
+.hero__poster {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.hero__poster:hover {
+  transform: translateY(-6px) perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.02);
 }
 
 @keyframes posterWiggleIn {
@@ -1223,6 +1264,25 @@ main.container {
     max-width: 400px;
     margin: 0 auto;
     width: 100%;
+  }
+  
+  /* Hide or reposition doodles on mobile */
+  .doodle--circle {
+    top: 5%;
+    right: 5%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .doodle--arrow {
+    bottom: 15%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .doodle--star {
+    display: none; /* Hide star on mobile for cleaner look */
   }
 }
 
