@@ -962,11 +962,11 @@ main.container {
   align-items: center;
   gap: 0.3rem;
   padding-bottom: 0.75rem;
-  position: relative;
 }
 
 /* Hand-drawn style underline enhancement */
 .section__title::after {
+  position: relative;
   content: "";
   position: absolute;
   bottom: -3px;
