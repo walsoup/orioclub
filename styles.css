@@ -147,6 +147,9 @@ img {
   opacity: 0.25;
   filter: blur(80px);
   mix-blend-mode: multiply;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .blob-1 {
@@ -154,7 +157,8 @@ img {
   height: 500px;
   top: -150px;
   left: -100px;
-  background: radial-gradient(circle, rgba(200, 100, 68, 0.4), transparent 70%);
+  /* Use custom blob image if available, fallback to gradient */
+  background-image: url('assets/blob-1.png'), radial-gradient(circle, rgba(200, 100, 68, 0.4), transparent 70%);
   border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
   animation: organicFloat 30s ease-in-out infinite alternate;
 }
@@ -164,7 +168,8 @@ img {
   height: 600px;
   bottom: -200px;
   right: -150px;
-  background: radial-gradient(circle, rgba(232, 220, 200, 0.6), transparent 70%);
+  /* Use custom blob image if available, fallback to gradient */
+  background-image: url('assets/blob-2.png'), radial-gradient(circle, rgba(232, 220, 200, 0.6), transparent 70%);
   border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%;
   animation: organicFloat 35s ease-in-out infinite alternate-reverse;
 }
@@ -206,7 +211,6 @@ body.reduce-motion .btn { transform: none !important; }
 body.reduce-motion .hero__cta::before { display: none; }
 body.reduce-motion .hero::before { animation: none; }
 body.reduce-motion .hero::after { animation: none; }
-body.reduce-motion .hero__doodle { animation: none; }
 body.reduce-motion .hero__title::before { animation: none; }
 body.reduce-motion .hero__poster::after { display: none; }
 body.reduce-motion .members-card::before { display: none; }
@@ -291,32 +295,6 @@ main.container {
   margin-bottom: clamp(3rem, 6vw, 5rem);
   position: relative;
   padding: clamp(2rem, 4vw, 3rem) 0;
-}
-
-/* Hand-drawn doodle decoration */
-.hero__doodle {
-  position: absolute;
-  top: -40px;
-  right: 10%;
-  width: 120px;
-  height: 120px;
-  color: var(--accent-warm);
-  opacity: 0.5;
-  animation: doodleFloat 15s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes doodleFloat {
-  0%, 100% { 
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% { 
-    transform: translate(5px, -8px) rotate(5deg);
-  }
-  66% { 
-    transform: translate(-3px, 5px) rotate(-3deg);
-  }
 }
 
 /* Hand-drawn circle accent behind title */
@@ -1089,13 +1067,6 @@ main.container {
     text-align: left;
     gap: 3rem;
     padding: 1.5rem 0;
-  }
-  
-  .hero__doodle {
-    top: -20px;
-    right: 5%;
-    width: 90px;
-    height: 90px;
   }
   
   .hero::before {
