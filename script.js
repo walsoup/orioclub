@@ -1,3 +1,24 @@
+// Squiggle update function - needs to be global for loadContent()
+function updateSquiggle() {
+  const squiggle = document.getElementById('squiggle-path');
+  const heroTitle = document.querySelector('.hero__title');
+  const squiggleSvg = document.querySelector('.hero__squiggle');
+
+  if (!squiggle || !heroTitle || !squiggleSvg) return;
+
+  try {
+    // Match squiggle width to title width
+    const titleWidth = heroTitle.offsetWidth;
+    squiggleSvg.style.width = `${titleWidth}px`;
+
+    // Update path length for responsiveness (optional for a straight line but good practice)
+    const len = Math.ceil(squiggle.getTotalLength());
+    squiggle.style.setProperty('--squiggle-length', `${len}`);
+  } catch (e) {
+    // Silently handle SVG measurement errors during initialization
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const membersList = document.getElementById("members-list");
   const yearSpan = document.querySelector("[data-year]");
@@ -33,31 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Squiggle dash length setup and width matching
-  const squiggle = document.getElementById('squiggle-path');
-  const heroTitle = document.querySelector('.hero__title');
-  const squiggleSvg = document.querySelector('.hero__squiggle');
-  
-  function updateSquiggle() {
-    if (!squiggle || !heroTitle || !squiggleSvg) return;
-    
-    try {
-      // Match squiggle width to title width
-      const titleWidth = heroTitle.offsetWidth;
-      squiggleSvg.style.width = `${titleWidth}px`;
-      
-      // Update dash length after width change
-      const len = Math.ceil(squiggle.getTotalLength());
-      squiggle.style.setProperty('--squiggle-length', `${len}`);
-      squiggle.style.strokeDasharray = `${len}`;
-      squiggle.style.strokeDashoffset = `${len}`;
-    } catch (e) {
-      // ignore if SVG not ready
-    }
-  }
-  
+  // Initialize squiggle
   updateSquiggle();
-  
+
   // Re-calculate on window resize
   let resizeTimer;
   window.addEventListener('resize', () => {
@@ -185,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = document.createElement('div');
     list.className = 'events-list';
 
-    section.innerHTML = `<h2 class=\"section__title\"><img class=\"icon icon-title\" src=\"assets/calendar.svg\" alt=\"\" aria-hidden=\"true\">Événements à venir</h2>`;
+    section.innerHTML = `<h2 class="section__title"><img class="icon icon-title" src="assets/calendar.svg" alt="" aria-hidden="true">Événements à venir</h2>`;
 
     const MS_IN_DAY = 24 * 60 * 60 * 1000;
     const now = new Date();
@@ -224,11 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector('.site-header__nav');
     if (!nav) return;
     if (nav.querySelector('a[href="#events"]')) return; // already exists
-    
+
     const a = document.createElement('a');
     a.href = '#events';
     a.textContent = 'Événements';
-    
+
     // Insert before "À propos" link (first child)
     const aboutLink = nav.querySelector('a[href="#about"]');
     if (aboutLink) {
@@ -304,36 +303,36 @@ async function loadContent() {
   try {
     const response = await fetch('content.txt', { cache: 'no-cache' });
     if (!response.ok) throw new Error('Content file not found');
-    
+
     const text = await response.text();
     const content = parseContent(text);
-    
+
     // Update hero title
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle && content['hero-title']) {
       heroTitle.textContent = content['hero-title'];
     }
-    
+
     // Update hero subtitle
     const heroSubtitle = document.getElementById('hero-subtitle');
     if (heroSubtitle && content['hero-subtitle']) {
       heroSubtitle.textContent = content['hero-subtitle'];
     }
-    
+
     // Update about content
     const aboutContent = document.getElementById('about-content');
     if (aboutContent && content['about']) {
       aboutContent.textContent = content['about'];
     }
-    
+
     // Apply title font if specified
     if (heroTitle && content['title-font']) {
       const fontValue = content['title-font'].trim();
-      
+
       // Don't reload if already using Fredoka One (default)
       if (fontValue !== 'Fredoka One') {
         let fontFamily = '';
-        
+
         // Check if it's a custom font (prefix: "custom:")
         if (fontValue.startsWith('custom:')) {
           // Custom font - extract name and apply (already loaded via CSS @font-face)
@@ -343,26 +342,26 @@ async function loadContent() {
           // Google Font - load dynamically
           const font = fontValue;
           const fontUrl = font.replace(/\s+/g, '+');
-          
+
           // Load from Google Fonts with error handling
           const link = document.createElement('link');
           link.href = `https://fonts.googleapis.com/css2?family=${fontUrl}:wght@400;700&display=swap`;
           link.rel = 'stylesheet';
-          
+
           // Fallback to default if font doesn't load
           link.onerror = () => {
             console.warn(`Font "${font}" not found on Google Fonts, using Fredoka One instead`);
             heroTitle.style.fontFamily = '"Fredoka One", cursive';
           };
-          
+
           document.head.appendChild(link);
-          
+
           fontFamily = `"${font}", "Fredoka One", cursive`;
         }
-        
+
         // Apply font to hero title
         heroTitle.style.fontFamily = fontFamily;
-        
+
         // Check if font should apply to all headers
         const scope = content['title-font-scope']?.trim().toLowerCase();
         if (scope === 'all-headers') {
@@ -372,12 +371,12 @@ async function loadContent() {
             title.style.fontFamily = fontFamily;
           });
         }
-        
+
         // Wait a bit for font to load, then update squiggle
         setTimeout(() => updateSquiggle(), 200);
       }
     }
-    
+
     // Apply title outline setting
     if (heroTitle && content['title-outline']) {
       const outline = content['title-outline'].trim().toLowerCase();
@@ -393,55 +392,47 @@ async function loadContent() {
         heroTitle.style.paintOrder = 'stroke fill';
       }
     }
-    
+
     // Apply squiggle style
     const squigglePath = document.getElementById('squiggle-path');
     const squiggleSvg = document.querySelector('.hero__squiggle');
     if (squigglePath && content['squiggle-style']) {
       const style = content['squiggle-style'].trim().toLowerCase();
-      
+
       // Show squiggle by default
       if (squiggleSvg) squiggleSvg.style.display = 'block';
       
-      switch(style) {
+      // Since we only want a straight line, we can simplify this.
+      // This path creates a straight horizontal line.
+      const straightLinePath = 'M0 14 H 598';
+
+      // Reset shared styles before applying a variant
+      squigglePath.style.strokeDasharray = '';
+      squigglePath.style.strokeLinecap = 'round';
+      squigglePath.style.filter = '';
+      squigglePath.style.strokeWidth = '5';
+      squigglePath.setAttribute('d', straightLinePath);
+
+      switch (style) {
         case 'none':
-          // Hide the squiggle completely
           if (squiggleSvg) squiggleSvg.style.display = 'none';
           break;
         case 'thick':
           squigglePath.style.strokeWidth = '8';
-          squigglePath.style.strokeDasharray = '';
-          squigglePath.style.filter = '';
-          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
           break;
         case 'dotted':
-          squigglePath.style.strokeWidth = '5';
           squigglePath.style.strokeDasharray = '0 15';
-          squigglePath.style.strokeLinecap = 'round';
-          squigglePath.style.filter = '';
-          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
           break;
         case 'double':
           squigglePath.style.strokeWidth = '3';
-          squigglePath.style.strokeDasharray = '';
           squigglePath.style.filter = 'drop-shadow(0 4px 0 var(--accent))';
-          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
-          break;
-        case 'wavy':
-          squigglePath.style.strokeWidth = '5';
-          squigglePath.style.strokeDasharray = '';
-          squigglePath.style.filter = '';
-          squigglePath.setAttribute('d', 'M2 14 Q 30 2, 60 14 T 120 14 T 180 14 T 240 14 T 300 14 T 360 14 T 420 14 T 480 14 T 540 14 T 598 14');
           break;
         default:
-          // Keep default style
-          squigglePath.style.strokeWidth = '5';
-          squigglePath.style.strokeDasharray = '';
-          squigglePath.style.filter = '';
-          squigglePath.setAttribute('d', 'M2 14 C 50 2, 100 26, 150 14 S 250 2, 300 14 350 26, 400 14 450 2, 500 14 550 26, 598 14');
+          // Keep default styling defined above
+          break;
       }
     }
-    
+
     // Re-update squiggle after title changes
     updateSquiggle();
   } catch (e) {
@@ -463,5 +454,3 @@ function parseContent(text) {
     });
   return content;
 }
-
-
