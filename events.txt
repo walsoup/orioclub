@@ -1,5 +1,1 @@
 # Format: Title | Date | Location | Description | Image (optional)
-# Date format: YYYY-MM-DD
-# Lines starting with # are comments and will be ignored
-
-Weekly Meeting | 2025-10-06 | Room 10 | A meeting of presidents to discuss the idc | assets/water.jpg

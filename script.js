@@ -100,13 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!list) return;
     list.innerHTML = '';
     if (members.length === 0) {
-      list.innerHTML = '<p>Aucun membre à afficher.</p>';
+      list.innerHTML = '<p>Aucun membre à afficher pour le moment.</p>';
       return;
     }
 
-    members.forEach(({ name, role, description, avatar }) => {
+    members.forEach(({ name, role, description, avatar }, index) => {
       const card = document.createElement('div');
       card.className = 'members-card';
+      card.style.animationDelay = `${index * 0.1}s`;
 
       const avatarSrc = avatar || 'assets/polaroid-placeholder.png';
 
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <img src="${avatarSrc}" alt="Avatar de ${name}" class="members-card__avatar" onerror="this.onerror=null;this.src='assets/polaroid-placeholder.png';" loading="lazy" decoding="async" width="100" height="100">
         <h3 class="members-card__name">${name}</h3>
         <p class="members-card__role">${role || 'Membre'}</p>
-        <p class="members-card__description">${description || 'Aucune description.'}</p>
+        <p class="members-card__description">${description || 'Aucune description disponible.'}</p>
       `;
       list.appendChild(card);
     });

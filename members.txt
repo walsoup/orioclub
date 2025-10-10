@@ -1,8 +1,8 @@
 # Format : Nom | Rôle | Description | Image (optionnel)
 # L'image peut être un chemin relatif vers /assets ou une URL complète.
 # Exemple : Fatima Zahra | Responsable admission | Pilote les ateliers Parcoursup. | assets/fatima.jpg
-Meriam | Club President | Sdiybt | assets/water.jpg
-Walid | Vice President | DSdiybt 
-Taha | Secretary general | Maman
-Youssef | Accountant | Youssef(x)
-Afrass | Consultant-at-Large | "Youssef(x)"
+Meriam | Présidente du Club | Coordonne toutes les activités du club et représente les membres auprès de l'administration. | assets/water.jpg
+Walid | Vice-Président | Soutient la présidente dans la gestion quotidienne et supervise les projets stratégiques.
+Taha | Secrétaire Général | Gère la communication interne, les archives et l'organisation des réunions.
+Youssef | Trésorier | Responsable de la gestion financière et du budget du club.
+Afrass | Consultant Senior | Apporte son expertise pour développer de nouvelles initiatives et partenariats.

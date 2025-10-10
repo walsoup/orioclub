@@ -3,10 +3,9 @@
 # Available sections: hero-title, hero-subtitle, about, title-font, title-font-scope, title-outline, squiggle-style
 
 # Hero Content
-hero-title | Club d'Orientation et opportunités scholaires
-hero-subtitle | kys
-about | I will touch taha .
-
+hero-title | Club d'Orientation et opportunités scolaires
+hero-subtitle | Spotify is doing me right rn
+About | idk still what to put here
 # Title Customization
 # title-font: Change the hero title font
 #   Format: FontName  OR  custom:FontName (no spaces after colon!)
@@ -20,7 +19,7 @@ about | I will touch taha .
 #     Example: title-font | custom:AlexiaBright
 #     Font files must be in assets/fonts/ and loaded in styles.css
 #
-title-font | Pacifico
+title-font | Permanent Marker
 
 # title-font-scope: Apply font to hero title only or ALL headers?
 #   hero-only = Just the big hero title (default)
@@ -39,5 +38,5 @@ title-outline | no
 #   double  = Double-line effect with shadow
 #   wavy    = Smoother wave pattern
 #   none    = No squiggle (if you really want to remove it)
-squiggle-style | dotted
+squiggle-style | none
 

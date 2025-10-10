@@ -1,0 +1,42 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond dégradé papier -->
+  <defs>
+    <linearGradient id="paperGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef9ed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8dcc8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Texture de bruit -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" />
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend mode="multiply" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  
+  <!-- Fond -->
+  <rect width="300" height="300" fill="url(#paperGradient)"/>
+  
+  <!-- Texture légère -->
+  <rect width="300" height="300" fill="url(#paperGradient)" opacity="0.3" filter="url(#noise)"/>
+  
+  <!-- Bordure décorative -->
+  <rect x="15" y="15" width="270" height="270" fill="none" stroke="#c86428" stroke-width="2" stroke-dasharray="8,6" opacity="0.3" rx="4"/>
+  
+  <!-- Icône utilisateur stylisée -->
+  <g transform="translate(150, 120)">
+    <!-- Tête -->
+    <circle cx="0" cy="0" r="35" fill="#d89161" opacity="0.6"/>
+    
+    <!-- Corps -->
+    <path d="M -50 80 Q -50 40, -35 35 L 35 35 Q 50 40, 50 80 Z" fill="#d89161" opacity="0.6"/>
+  </g>
+  
+  <!-- Texte -->
+  <text x="150" y="230" font-family="Poppins, sans-serif" font-size="16" font-weight="600" fill="#5a4a3a" text-anchor="middle" opacity="0.7">
+    Photo à venir
+  </text>
+  
+  <!-- Petit accent décoratif -->
+  <circle cx="150" cy="250" r="3" fill="#c86428" opacity="0.5"/>
+</svg>
