@@ -1,6 +1,11 @@
 // Bouncy Orbs Physics Engine
 // Makes the floating orbs bounce off each other and the edges of the viewport
 
+// Constants
+const TARGET_FRAME_TIME = 16.67; // 60fps in milliseconds
+const RESIZE_DEBOUNCE_DELAY = 250; // milliseconds
+const TOGGLE_DELAY = 100; // milliseconds
+
 class BouncyOrb {
   constructor(element, index) {
     this.element = element;
@@ -19,7 +24,7 @@ class BouncyOrb {
     this.vy = (Math.random() - 0.5) * 3;
     
     // Physics properties
-    this.mass = this.radius;
+    this.mass = Math.PI * this.radius * this.radius; // Area-based mass for realistic physics
     this.damping = 0.98; // Slight energy loss on bounce
     this.restitution = 0.85; // Bounciness (0 = no bounce, 1 = perfect bounce)
   }
@@ -134,11 +139,8 @@ class BouncyOrbsEngine {
     
     // Create BouncyOrb instances
     orbElements.forEach((element, index) => {
-      // Disable CSS animations
-      element.style.animation = 'none';
-      
-      // Change positioning from fixed to absolute
-      element.style.position = 'absolute';
+      // Add physics-enabled class for styling
+      element.classList.add('physics-enabled');
       
       this.orbs.push(new BouncyOrb(element, index));
     });
@@ -150,13 +152,15 @@ class BouncyOrbsEngine {
   
   animate() {
     const currentTime = performance.now();
-    const dt = Math.min((currentTime - this.lastTime) / 16.67, 2); // Cap dt to prevent large jumps
+    const dt = Math.min((currentTime - this.lastTime) / TARGET_FRAME_TIME, 2); // Cap dt to prevent large jumps
     this.lastTime = currentTime;
     
     // Update all orbs
     this.orbs.forEach(orb => orb.update(dt));
     
     // Check collisions between all orbs
+    // Note: O(n²) complexity is acceptable for small number of orbs (10)
+    // For larger numbers, consider spatial partitioning (quadtree)
     for (let i = 0; i < this.orbs.length; i++) {
       for (let j = i + 1; j < this.orbs.length; j++) {
         const collision = this.orbs[i].checkCollision(this.orbs[j]);
@@ -205,7 +209,7 @@ if (document.readyState === 'loading') {
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(initBouncyOrbs, 250);
+  resizeTimeout = setTimeout(initBouncyOrbs, RESIZE_DEBOUNCE_DELAY);
 });
 
 // Handle reduce-motion toggle
@@ -220,6 +224,6 @@ if (toggleAnimBtn) {
       } else {
         initBouncyOrbs();
       }
-    }, 100);
+    }, TOGGLE_DELAY);
   });
 }

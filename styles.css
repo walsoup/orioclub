@@ -315,6 +315,12 @@ main.container {
   filter: blur(2px);
 }
 
+/* When physics is enabled via JavaScript */
+.page-blob.physics-enabled {
+  position: absolute;
+  animation: none !important;
+}
+
 /* Random positioning and sizing for each blob - slightly bigger for bouncy effect */
 .page-blob--1 {
   top: 8%;
