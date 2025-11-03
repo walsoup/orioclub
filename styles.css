@@ -634,20 +634,6 @@ main.container {
   border-radius: 100px;
 }
 
-/* Replace sparkle with organic dot */
-.hero__title::before {
-  content: "◉";
-  position: absolute;
-  top: -0.2em;
-  right: -0.4em;
-  font-size: 0.35em;
-  color: var(--accent);
-  animation: gentlePulse 4s ease-in-out infinite;
-  opacity: 0.75;
-  -webkit-text-stroke: 0;
-  text-shadow: 0 2px 8px rgba(200, 100, 68, 0.3);
-}
-
 @keyframes titleSlideIn {
   from {
     opacity: 0;
